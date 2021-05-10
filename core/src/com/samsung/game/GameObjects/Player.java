@@ -3,7 +3,7 @@ package com.samsung.game.GameObjects;
 import com.badlogic.gdx.Gdx;
 import com.samsung.game.Screens.GameScreen;
 
-import static com.samsung.game.HelperClasses.Constants.PPM;
+import static com.samsung.game.HelperClasses.Constants.PIXELS_PER_METRE;
 
 public class Player extends PlayerPaddle {
     public Player(float x, float y, GameScreen gameScreen) {
@@ -15,7 +15,7 @@ public class Player extends PlayerPaddle {
         super.update();
         if(Gdx.input.isTouched()) {
             float bodyPosX = body.getPosition().x;
-            float touchPosX = (Gdx.input.getX()) / PPM;
+            float touchPosX = (Gdx.input.getX()) / PIXELS_PER_METRE;
             if (touchPosX > bodyPosX + 1) {
                 velX = 1;
             }

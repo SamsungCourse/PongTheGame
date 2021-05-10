@@ -16,10 +16,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.samsung.game.Boot;
 
-import static com.samsung.game.HelperClasses.Constants.BUTTON_HEIGHT;
-import static com.samsung.game.HelperClasses.Constants.BUTTON_WIDTH;
-import static com.samsung.game.HelperClasses.Constants.BUTTON_X;
-import static com.samsung.game.HelperClasses.Constants.BUTTON_Y;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_HEIGHT;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_WIDTH;
 

@@ -7,10 +7,10 @@ import com.samsung.game.HelperClasses.BodyCreator;
 import com.samsung.game.HelperClasses.ContactType;
 import com.samsung.game.Screens.GameScreen;
 
-import java.util.Random;
-
+import static com.samsung.game.HelperClasses.Constants.BALL_HEIGHT;
 import static com.samsung.game.HelperClasses.Constants.BALL_SPEED;
-import static com.samsung.game.HelperClasses.Constants.PPM;
+import static com.samsung.game.HelperClasses.Constants.BALL_WIDTH;
+import static com.samsung.game.HelperClasses.Constants.PIXELS_PER_METRE;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_HEIGHT;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_WIDTH;
 
@@ -24,15 +24,15 @@ public class Ball {//класс пули
     public int angle;
 
     public Ball(GameScreen gameScreen) {
-        x = SCREEN_WIDTH / 2;
-        y = SCREEN_HEIGHT / 2;
+        x = SCREEN_WIDTH / 2f;
+        y = SCREEN_HEIGHT / 2f;
         speed = BALL_SPEED;
         angle = getRandomAngle(new int[]{0, 45, -45, 135, -135});
 
         texture = new Texture("dot.png");
         this.gameScreen = gameScreen;
-        width = 32;
-        height = 32;
+        width = BALL_WIDTH;
+        height = BALL_HEIGHT;
         body = BodyCreator.createBody(x, y, width, height, false, 0, gameScreen.getWorld(), ContactType.BALL);
     }
 
@@ -60,13 +60,8 @@ public class Ball {//класс пули
     public void update(){//здесь мы каждый раз переопределяем скорость по x и y
         velX = (float) (speed * Math.sin(Math.toRadians(angle)));//формула, благодаря которой можно найти координаты X и Y точки на окружности
         velY = (float) (speed * Math.cos(Math.toRadians(angle)));//сдвигая фигуру по этим координатам мы именно так как надо пермещаем обьект на все 360 градусов
-        x =  body.getPosition().x * PPM - (width/2);//это для всех обьектов справедливые строки, они говорят, где находится обьект сейчас
-        y =  body.getPosition().y * PPM - (width/2);
-
-        if (body.getLinearVelocity().x <= 0f && body.getLinearVelocity().y == 0f) {//при баге перезапускаем пулю
-            reset();
-            angle = getRandomAngle(new int[]{0, 22, 45, -22, -45, 180, 157, 135, -157, -135});
-        }
+        x =  body.getPosition().x * PIXELS_PER_METRE - (width/2);//это для всех обьектов справедливые строки, они говорят, где находится обьект сейчас
+        y =  body.getPosition().y * PIXELS_PER_METRE - (width/2);
 
         body.setLinearVelocity(velX, velY);
 
@@ -89,7 +84,7 @@ public class Ball {//класс пули
 
     public void reset(){
         speed = BALL_SPEED;
-        body.setTransform(SCREEN_WIDTH/2/PPM, SCREEN_HEIGHT/2/PPM, 0);
+        body.setTransform(SCREEN_WIDTH/2/ PIXELS_PER_METRE, SCREEN_HEIGHT/2/ PIXELS_PER_METRE, 0);
     }
 
     public void render(SpriteBatch batch){

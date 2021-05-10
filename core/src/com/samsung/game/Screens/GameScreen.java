@@ -14,13 +14,16 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.samsung.game.GameObjects.Ball;
 import com.samsung.game.GameObjects.EnemyUI;
 import com.samsung.game.GameObjects.Player;
-import com.samsung.game.GameObjects.PlayerPaddle;
 import com.samsung.game.GameObjects.Wall;
 import com.samsung.game.HelperClasses.Constants;
 import com.samsung.game.HelperClasses.GameCollision;
 
+import static com.samsung.game.HelperClasses.Constants.NUMBERS_HEIGHT;
+import static com.samsung.game.HelperClasses.Constants.NUMBERS_WIDTH;
+import static com.samsung.game.HelperClasses.Constants.NUMBER_SPACE;
 import static com.samsung.game.HelperClasses.Constants.PLAYER_Y;
-import static com.samsung.game.HelperClasses.Constants.PPM;
+import static com.samsung.game.HelperClasses.Constants.PIXELS_PER_METRE;
+import static com.samsung.game.HelperClasses.Constants.SCORE_SPACE;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_HEIGHT;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_WIDTH;
 import static com.samsung.game.HelperClasses.Constants.WALL_WIDTH;
@@ -60,12 +63,12 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
 
     private void drawNumbers(SpriteBatch batch, int number, float x, float y, float width, float height){
         if (number < 10){
-            batch.draw(numbers[0], x - 50, y, width, height);
-            batch.draw(numbers[number], x + 50, y, width, height);
+            batch.draw(numbers[0], x - NUMBER_SPACE, y, width, height);
+            batch.draw(numbers[number], x + NUMBER_SPACE, y, width, height);
         }
         else {
-            batch.draw(numbers[Integer.parseInt((""+number).substring(0,1))], x - 50, y, width, height);
-            batch.draw(numbers[Integer.parseInt((""+number).substring(1,2))], x + 50, y, width, height);
+            batch.draw(numbers[Integer.parseInt((""+number).substring(0,1))], x - NUMBER_SPACE, y, width, height);
+            batch.draw(numbers[Integer.parseInt((""+number).substring(1,2))], x + NUMBER_SPACE, y, width, height);
         }
     }
 
@@ -116,12 +119,12 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
         rightWall.render(batch);
         leftWall.render(batch);
 
-        drawNumbers(batch, player.getScore(), SCREEN_WIDTH / 2f - 200,  SCREEN_HEIGHT / 2f, 100, 140);
-        drawNumbers(batch, enemy.getScore(), SCREEN_WIDTH / 2f + 200, SCREEN_HEIGHT / 2f, 100, 140);
+        drawNumbers(batch, player.getScore(), SCREEN_WIDTH / 2f - SCORE_SPACE,  SCREEN_HEIGHT / 2f, NUMBERS_WIDTH, NUMBERS_HEIGHT);
+        drawNumbers(batch, enemy.getScore(), SCREEN_WIDTH / 2f + SCORE_SPACE, SCREEN_HEIGHT / 2f, NUMBERS_WIDTH, NUMBERS_HEIGHT);
 
         batch.end();
 
 
-        box2DDebugRenderer.render(world, camera.combined.scl(PPM));
+        box2DDebugRenderer.render(world, camera.combined.scl(PIXELS_PER_METRE));
     }
 }

@@ -18,7 +18,7 @@ public class Wall {//стены по бокам
     private Texture texture;
 
     public Wall(float x, GameScreen gameScreen){
-        y = SCREEN_HEIGHT/2;
+        y = SCREEN_HEIGHT/2f;
         this.x = x;
         height = SCREEN_HEIGHT;
         width = WALL_WIDTH;

@@ -7,7 +7,10 @@ import com.samsung.game.HelperClasses.BodyCreator;
 import com.samsung.game.HelperClasses.ContactType;
 import com.samsung.game.Screens.GameScreen;
 
-import static com.samsung.game.HelperClasses.Constants.PPM;
+import static com.samsung.game.HelperClasses.Constants.PADDLE_SPEED;
+import static com.samsung.game.HelperClasses.Constants.PIXELS_PER_METRE;
+import static com.samsung.game.HelperClasses.Constants.PUDDLE_HEIGHT;
+import static com.samsung.game.HelperClasses.Constants.PUDDLE_WIDTH;
 
 public abstract class PlayerPaddle {//это ракетка всех ракеток, от нее наследуемся, чтобы создать другие типы ракеток
 
@@ -21,9 +24,9 @@ public abstract class PlayerPaddle {//это ракетка всех ракет�
         this.x = x;
         this.y = y;
         this.gameScreen = gameScreen;
-        this.speed = 56;
-        this.width = 126;
-        this.height = 42;
+        this.speed = PADDLE_SPEED;
+        this.width = PUDDLE_WIDTH;
+        this.height = PUDDLE_HEIGHT;
         this.texture = new Texture("dot.png");
         body = BodyCreator.createBody(x, y, width, height,false,10000, gameScreen.getWorld(), ContactType.PLAYER);
     }
@@ -37,8 +40,8 @@ public abstract class PlayerPaddle {//это ракетка всех ракет�
     }
 
     public void update(){
-        x = body.getPosition().x * PPM - (width/2);
-        y = body.getPosition().y * PPM - (height/2);
+        x = body.getPosition().x * PIXELS_PER_METRE - (width/2f);
+        y = body.getPosition().y * PIXELS_PER_METRE - (height/2f);
         velX = 0;
     }
 
