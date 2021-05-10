@@ -1,10 +1,12 @@
-package com.samsung.game.screens;
+package com.samsung.game.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -12,19 +14,20 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.samsung.game.GameObjects.Ball;
 import com.samsung.game.GameObjects.EnemyUI;
 import com.samsung.game.GameObjects.Player;
+import com.samsung.game.GameObjects.PlayerPaddle;
 import com.samsung.game.GameObjects.Wall;
-import com.samsung.game.helperClasses.Constants;
-import com.samsung.game.helperClasses.GameCollision;
+import com.samsung.game.HelperClasses.Constants;
+import com.samsung.game.HelperClasses.GameCollision;
 
-import static com.samsung.game.helperClasses.Constants.PLAYER_Y;
-import static com.samsung.game.helperClasses.Constants.PPM;
-import static com.samsung.game.helperClasses.Constants.SCREEN_HEIGHT;
-import static com.samsung.game.helperClasses.Constants.SCREEN_WIDTH;
-import static com.samsung.game.helperClasses.Constants.WALL_WIDTH;
+import static com.samsung.game.HelperClasses.Constants.PLAYER_Y;
+import static com.samsung.game.HelperClasses.Constants.PPM;
+import static com.samsung.game.HelperClasses.Constants.SCREEN_HEIGHT;
+import static com.samsung.game.HelperClasses.Constants.SCREEN_WIDTH;
+import static com.samsung.game.HelperClasses.Constants.WALL_WIDTH;
 
 public class GameScreen extends ScreenAdapter {//игровой экран, вызывается сетап скрином с нужными конфигурациями
 
-    private OrthographicCamera camera;
+    public OrthographicCamera camera;
     private SpriteBatch batch;
     private World world;
     private Box2DDebugRenderer box2DDebugRenderer;
@@ -35,6 +38,8 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
     private Ball ball;
     private Wall leftWall, rightWall;
     private EnemyUI enemy;
+
+    private TextureRegion[] numbers;
 
     public GameScreen(OrthographicCamera camera){
         this.camera = camera;
@@ -50,6 +55,23 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
         ball = new Ball(this);
         leftWall = new Wall(WALL_WIDTH / 2, this);
         rightWall = new Wall(SCREEN_WIDTH - WALL_WIDTH / 2, this);
+        numbers = loadTextureSprite("numbers.png", 10);
+    }
+
+    private void drawNumbers(SpriteBatch batch, int number, float x, float y, float width, float height){
+        if (number < 10){
+            batch.draw(numbers[0], x - 50, y, width, height);
+            batch.draw(numbers[number], x + 50, y, width, height);
+        }
+        else {
+            batch.draw(numbers[Integer.parseInt((""+number).substring(0,1))], x - 50, y, width, height);
+            batch.draw(numbers[Integer.parseInt((""+number).substring(1,2))], x + 50, y, width, height);
+        }
+    }
+
+    private TextureRegion[] loadTextureSprite(String filename, int columns){
+        Texture texture = new Texture(filename);
+        return TextureRegion.split(texture, texture.getWidth() / columns, texture.getHeight())[0];
     }
 
     public EnemyUI getEnemy() {
@@ -87,12 +109,18 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
+
         enemy.render(batch);
         player.render(batch);
         ball.render(batch);
         rightWall.render(batch);
         leftWall.render(batch);
+
+        drawNumbers(batch, player.getScore(), SCREEN_WIDTH / 2f - 200,  SCREEN_HEIGHT / 2f, 100, 140);
+        drawNumbers(batch, enemy.getScore(), SCREEN_WIDTH / 2f + 200, SCREEN_HEIGHT / 2f, 100, 140);
+
         batch.end();
+
 
         box2DDebugRenderer.render(world, camera.combined.scl(PPM));
     }

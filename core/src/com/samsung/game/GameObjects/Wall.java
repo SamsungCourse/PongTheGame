@@ -1,15 +1,14 @@
 package com.samsung.game.GameObjects;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.samsung.game.helperClasses.BodyCreator;
-import com.samsung.game.helperClasses.ContactType;
-import com.samsung.game.screens.GameScreen;
+import com.samsung.game.HelperClasses.BodyCreator;
+import com.samsung.game.HelperClasses.ContactType;
+import com.samsung.game.Screens.GameScreen;
 
-import static com.samsung.game.helperClasses.Constants.SCREEN_HEIGHT;
-import static com.samsung.game.helperClasses.Constants.WALL_WIDTH;
+import static com.samsung.game.HelperClasses.Constants.SCREEN_HEIGHT;
+import static com.samsung.game.HelperClasses.Constants.WALL_WIDTH;
 
 public class Wall {//стены по бокам
 

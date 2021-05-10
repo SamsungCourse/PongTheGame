@@ -3,11 +3,11 @@ package com.samsung.game.GameObjects;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.samsung.game.helperClasses.BodyCreator;
-import com.samsung.game.helperClasses.ContactType;
-import com.samsung.game.screens.GameScreen;
+import com.samsung.game.HelperClasses.BodyCreator;
+import com.samsung.game.HelperClasses.ContactType;
+import com.samsung.game.Screens.GameScreen;
 
-import static com.samsung.game.helperClasses.Constants.PPM;
+import static com.samsung.game.HelperClasses.Constants.PPM;
 
 public abstract class PlayerPaddle {//это ракетка всех ракеток, от нее наследуемся, чтобы создать другие типы ракеток
 
@@ -28,6 +28,14 @@ public abstract class PlayerPaddle {//это ракетка всех ракет�
         body = BodyCreator.createBody(x, y, width, height,false,10000, gameScreen.getWorld(), ContactType.PLAYER);
     }
 
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
     public void update(){
         x = body.getPosition().x * PPM - (width/2);
         y = body.getPosition().y * PPM - (height/2);
@@ -38,7 +46,7 @@ public abstract class PlayerPaddle {//это ракетка всех ракет�
         batch.draw(texture, x, y , width, height);
     }
 
-    public void score(int scoreNum){
-        score += scoreNum;
+    public void score(){
+        score ++;
     }
 }

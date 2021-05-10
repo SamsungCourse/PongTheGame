@@ -1,4 +1,4 @@
-package com.samsung.game.helperClasses;
+package com.samsung.game.HelperClasses;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
-import static com.samsung.game.helperClasses.Constants.PPM;
+import static com.samsung.game.HelperClasses.Constants.PPM;
 
 public class BodyCreator {//этот класс создает нашим обьектам хитбоксы, чтобы можно было регировать на них потом
 
