@@ -14,6 +14,7 @@ public class Boot extends Game {//игровой класс, который за
 
 	@Override
 	public void create () {
+		System.out.println(SCREEN_HEIGHT + " " + SCREEN_WIDTH);
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
 		setScreen(new GameScreen(camera));

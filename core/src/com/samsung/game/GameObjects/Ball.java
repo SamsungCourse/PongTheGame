@@ -63,7 +63,7 @@ public class Ball {//класс пули
         x =  body.getPosition().x * PPM - (width/2);//это для всех обьектов справедливые строки, они говорят, где находится обьект сейчас
         y =  body.getPosition().y * PPM - (width/2);
 
-        if (body.getLinearVelocity().x <= 0.001f && body.getLinearVelocity().x >= 0 && body.getLinearVelocity().y >= 0 && body.getLinearVelocity().y <= 0.001f) {//при баге перезапускаем пулю
+        if (body.getLinearVelocity().x <= 0f && body.getLinearVelocity().y == 0f) {//при баге перезапускаем пулю
             reset();
             angle = getRandomAngle(new int[]{0, 22, 45, -22, -45, 180, 157, 135, -157, -135});
         }
