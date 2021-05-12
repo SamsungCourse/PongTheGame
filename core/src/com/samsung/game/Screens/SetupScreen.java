@@ -15,6 +15,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.samsung.game.Boot;
+import com.samsung.game.Screens.Buttons.ButtonUI;
+import com.sun.org.apache.xpath.internal.operations.Or;
 
 import static com.samsung.game.HelperClasses.Constants.SCREEN_HEIGHT;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_WIDTH;
@@ -25,19 +27,26 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
 
     private OrthographicCamera camera;
     private SpriteBatch batch;
+    private ButtonUI buttonUI;
+    private Boot boot;
+
     private World world;
 
-    public SetupScreen(OrthographicCamera camera){
-        this.camera = camera;
+    public SetupScreen(Boot boot){
+        this.boot = boot;
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
         background = new Texture("introBg.png");
         batch = new SpriteBatch();
         world = new World(new Vector2(0,0), false);
+        buttonUI = new ButtonUI(SCREEN_WIDTH/2f, SCREEN_HEIGHT/2f, boot);
     }
 
     public void update(){
         world.step(1 / 60f, 6,2);
 
         camera.update();
+        buttonUI.update();
 
         batch.setProjectionMatrix(camera.combined);
     }
@@ -51,6 +60,7 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
 
         batch.begin();
         batch.draw(background, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        buttonUI.render(batch);
         batch.end();
     }
 }

@@ -17,7 +17,7 @@ import static com.samsung.game.HelperClasses.Constants.SCREEN_WIDTH;
 public class Ball {//класс пули
 
     private Body body;
-    float x, y, speed, velX, velY;
+    public float x, y, speed, velX, velY;
     private int width, height;
     private GameScreen gameScreen;
     private Texture texture;

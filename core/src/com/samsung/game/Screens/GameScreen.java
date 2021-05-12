@@ -12,11 +12,12 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.samsung.game.GameObjects.Ball;
-import com.samsung.game.GameObjects.EnemyUI;
-import com.samsung.game.GameObjects.Player;
+import com.samsung.game.GameObjects.Paddles.UIPaddle;
+import com.samsung.game.GameObjects.Paddles.StandartPlayerPaddle;
 import com.samsung.game.GameObjects.Wall;
 import com.samsung.game.HelperClasses.Constants;
 import com.samsung.game.HelperClasses.GameCollision;
+import com.samsung.game.Screens.Buttons.ButtonUI;
 
 import static com.samsung.game.HelperClasses.Constants.NUMBERS_HEIGHT;
 import static com.samsung.game.HelperClasses.Constants.NUMBERS_WIDTH;
@@ -33,28 +34,27 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
     public OrthographicCamera camera;
     private SpriteBatch batch;
     private World world;
-    private Box2DDebugRenderer box2DDebugRenderer;
     private GameCollision gameCollision;
 
     //игровые обьекты
-    private Player player;
+    private StandartPlayerPaddle player;
     private Ball ball;
     private Wall leftWall, rightWall;
-    private EnemyUI enemy;
+    private UIPaddle enemy;
 
     private TextureRegion[] numbers;
 
-    public GameScreen(OrthographicCamera camera){
-        this.camera = camera;
-        this.camera.position.set(new Vector3(SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0));
+    public GameScreen(){
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
+        camera.position.set(new Vector3(SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0));
         batch = new SpriteBatch();
         world = new World(new Vector2(0,0), false);
-        box2DDebugRenderer = new Box2DDebugRenderer();
         gameCollision = new GameCollision(this);
         world.setContactListener(gameCollision);
 
-        player = new Player(SCREEN_WIDTH/2, PLAYER_Y, this);
-        enemy = new EnemyUI(SCREEN_WIDTH/2, SCREEN_HEIGHT - PLAYER_Y, this);
+        player = new StandartPlayerPaddle(SCREEN_WIDTH/2, PLAYER_Y, this);
+        enemy = new UIPaddle(SCREEN_WIDTH/2, SCREEN_HEIGHT - PLAYER_Y, this);
         ball = new Ball(this);
         leftWall = new Wall(WALL_WIDTH / 2, this);
         rightWall = new Wall(SCREEN_WIDTH - WALL_WIDTH / 2, this);
@@ -77,11 +77,11 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
         return TextureRegion.split(texture, texture.getWidth() / columns, texture.getHeight())[0];
     }
 
-    public EnemyUI getEnemy() {
+    public UIPaddle getEnemy() {
         return enemy;
     }
 
-    public Player getPlayer() {
+    public StandartPlayerPaddle getPlayer() {
         return player;
     }
 
@@ -123,8 +123,5 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
         drawNumbers(batch, enemy.getScore(), SCREEN_WIDTH / 2f + SCORE_SPACE, SCREEN_HEIGHT / 2f, NUMBERS_WIDTH, NUMBERS_HEIGHT);
 
         batch.end();
-
-
-        box2DDebugRenderer.render(world, camera.combined.scl(PIXELS_PER_METRE));
     }
 }

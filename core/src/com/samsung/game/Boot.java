@@ -10,13 +10,8 @@ import static com.samsung.game.HelperClasses.Constants.SCREEN_WIDTH;
 
 public class Boot extends Game {//игровой класс, который запускается первым, вызывая остальные экраны, также он передает GameScreen камеру, поэтому если будешь менять, не забудь про нее
 
-	private OrthographicCamera camera;
-
 	@Override
 	public void create () {
-		System.out.println(SCREEN_HEIGHT + " " + SCREEN_WIDTH);
-		camera = new OrthographicCamera();
-		camera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
-		setScreen(new GameScreen(camera));
+		setScreen(new SetupScreen(this));
 	}
 }

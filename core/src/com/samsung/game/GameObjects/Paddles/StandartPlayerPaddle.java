@@ -1,12 +1,12 @@
-package com.samsung.game.GameObjects;
+package com.samsung.game.GameObjects.Paddles;
 
 import com.badlogic.gdx.Gdx;
 import com.samsung.game.Screens.GameScreen;
 
 import static com.samsung.game.HelperClasses.Constants.PIXELS_PER_METRE;
 
-public class Player extends PlayerPaddle {
-    public Player(float x, float y, GameScreen gameScreen) {
+public class StandartPlayerPaddle extends AbstractPaddle {
+    public StandartPlayerPaddle(float x, float y, GameScreen gameScreen) {
         super(x, y, gameScreen);
     }
 
