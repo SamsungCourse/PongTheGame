@@ -39,12 +39,18 @@ public class SetDifficultyScreen extends ScreenAdapter {
         background = new Texture("backgrounds/difficultyBg.png");
         batch = new SpriteBatch();
         world = new World(new Vector2(0,0), false);
+        buttonEasy = new ButtonEasy(SCREEN_WIDTH/2f, 1600, boot);
+        buttonNormal = new ButtonNormal(SCREEN_WIDTH/2f, 1600 - BUTTON_HEIGHT - 10, boot);
+        buttonHard = new ButtonHard(SCREEN_WIDTH/2f, 1600 - 2*BUTTON_HEIGHT - 20, boot);
     }
 
     public void update(){
         world.step(1 / 60f, 6,2);
 
         camera.update();
+        buttonEasy.update();
+        buttonNormal.update();
+        buttonHard.update();
 
         batch.setProjectionMatrix(camera.combined);
     }
@@ -59,6 +65,9 @@ public class SetDifficultyScreen extends ScreenAdapter {
 
         batch.begin();
         batch.draw(background, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+        buttonEasy.render(batch);
+        buttonNormal.render(batch);
+        buttonHard.render(batch);
         batch.end();
     }
 }

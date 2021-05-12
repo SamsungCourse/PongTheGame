@@ -22,7 +22,6 @@ public class ButtonNormal extends AbstractButton {
         }
         else {
             if (toSetScreen){
-                System.out.println("YEAH!" + " " + x + " " + y);
                 gameScreen.getEnemy().speed = 35;
                 boot.setScreen(gameScreen);
             }

@@ -7,6 +7,7 @@ import com.samsung.game.Boot;
 import com.samsung.game.Screens.SetupScreen;
 
 import static com.samsung.game.HelperClasses.Constants.PIXELS_PER_METRE;
+import static com.samsung.game.HelperClasses.Constants.SCREEN_HEIGHT;
 
 public abstract class AbstractButton {
     protected Texture textureUp;
@@ -36,7 +37,7 @@ public abstract class AbstractButton {
     public Boolean isButtonTouched(){
         if (Gdx.input.isTouched()){
             float touchPosX = Gdx.input.getX();
-            float touchPosY = Gdx.input.getY();
+            float touchPosY = SCREEN_HEIGHT - Gdx.input.getY();
             System.out.println(touchPosX + "  " + touchPosY + "  " + x + "  " + y);
             return touchPosX >= x && touchPosX <= x + width && touchPosY >= y && touchPosY <= y + height;
         }

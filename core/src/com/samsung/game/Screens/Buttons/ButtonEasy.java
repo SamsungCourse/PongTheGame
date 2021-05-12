@@ -6,19 +6,23 @@ import com.samsung.game.Screens.GameScreen;
 
 public class ButtonEasy extends AbstractButton {
 
+    GameScreen gameScreen;
+
     public ButtonEasy(float x, float y, Boot boot) {
         super(x, y, boot);
         textureUp = new Texture("buttons/easyBtnD.png");
         textureDown = new Texture("buttons/easyBtn.png");
+        gameScreen = new GameScreen(boot);
     }
+
     public void update(){
         if (isButtonTouched()){
             toSetScreen = true;
         }
         else {
             if (toSetScreen){
-                System.out.println("BRUH");
-                boot.setScreen(new GameScreen(boot));
+                gameScreen.getEnemy().speed = 30;
+                boot.setScreen(gameScreen);
             }
         }
     }

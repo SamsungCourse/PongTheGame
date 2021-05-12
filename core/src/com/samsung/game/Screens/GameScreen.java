@@ -13,6 +13,9 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.samsung.game.Boot;
 import com.samsung.game.GameObjects.Ball;
+import com.samsung.game.GameObjects.Paddles.BluePlayerPaddle;
+import com.samsung.game.GameObjects.Paddles.GreenPlayerPaddle;
+import com.samsung.game.GameObjects.Paddles.RedPlayerPaddle;
 import com.samsung.game.GameObjects.Paddles.UIPaddle;
 import com.samsung.game.GameObjects.Paddles.StandartPlayerPaddle;
 import com.samsung.game.GameObjects.Wall;
@@ -39,6 +42,9 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
 
     //игровые обьекты
     private StandartPlayerPaddle player;
+    private BluePlayerPaddle bluePlayer;
+    private RedPlayerPaddle redPlayer;
+    private GreenPlayerPaddle greenPlayer;
     private Ball ball;
     private Wall leftWall, rightWall;
     private UIPaddle enemy;
@@ -53,16 +59,23 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
         camera = new OrthographicCamera();
         camera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
         camera.position.set(new Vector3(SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0));
+
         batch = new SpriteBatch();
         world = new World(new Vector2(0,0), false);
         gameCollision = new GameCollision(this);
         world.setContactListener(gameCollision);
-
+        //все падлы
         player = new StandartPlayerPaddle(SCREEN_WIDTH/2f, PLAYER_Y, this);
         enemy = new UIPaddle(SCREEN_WIDTH/2f, SCREEN_HEIGHT - PLAYER_Y, this);
+        bluePlayer = new BluePlayerPaddle(SCREEN_WIDTH/2f, PLAYER_Y, this);
+        redPlayer = new RedPlayerPaddle(SCREEN_WIDTH/2f, PLAYER_Y, this);
+        greenPlayer = new GreenPlayerPaddle(SCREEN_WIDTH/2f, PLAYER_Y, this);
+
         ball = new Ball(this);
+
         leftWall = new Wall(WALL_WIDTH/2f, this);
         rightWall = new Wall(SCREEN_WIDTH - WALL_WIDTH/2f, this);
+
         numbers = loadTextureSprite("numbers.png", 10);
     }
 

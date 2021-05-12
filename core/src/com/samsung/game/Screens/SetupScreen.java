@@ -38,7 +38,7 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
         background = new Texture("backgrounds/introBg.png");
         batch = new SpriteBatch();
         world = new World(new Vector2(0,0), false);
-        buttonUI = new ButtonUI(480, 1700, boot);
+        buttonUI = new ButtonUI(500, 1200, boot);
     }
 
     public void update(){
