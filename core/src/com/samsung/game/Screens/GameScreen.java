@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.samsung.game.Boot;
 import com.samsung.game.GameObjects.Ball;
 import com.samsung.game.GameObjects.Paddles.UIPaddle;
 import com.samsung.game.GameObjects.Paddles.StandartPlayerPaddle;
@@ -44,7 +45,11 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
 
     private TextureRegion[] numbers;
 
-    public GameScreen(){
+    public OrthographicCamera getCamera() {
+        return camera;
+    }
+
+    public GameScreen(Boot boot){
         camera = new OrthographicCamera();
         camera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
         camera.position.set(new Vector3(SCREEN_WIDTH / 2, Constants.SCREEN_HEIGHT / 2, 0));
@@ -53,11 +58,11 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
         gameCollision = new GameCollision(this);
         world.setContactListener(gameCollision);
 
-        player = new StandartPlayerPaddle(SCREEN_WIDTH/2, PLAYER_Y, this);
-        enemy = new UIPaddle(SCREEN_WIDTH/2, SCREEN_HEIGHT - PLAYER_Y, this);
+        player = new StandartPlayerPaddle(SCREEN_WIDTH/2f, PLAYER_Y, this);
+        enemy = new UIPaddle(SCREEN_WIDTH/2f, SCREEN_HEIGHT - PLAYER_Y, this);
         ball = new Ball(this);
-        leftWall = new Wall(WALL_WIDTH / 2, this);
-        rightWall = new Wall(SCREEN_WIDTH - WALL_WIDTH / 2, this);
+        leftWall = new Wall(WALL_WIDTH/2f, this);
+        rightWall = new Wall(SCREEN_WIDTH - WALL_WIDTH/2f, this);
         numbers = loadTextureSprite("numbers.png", 10);
     }
 

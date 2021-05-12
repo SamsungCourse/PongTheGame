@@ -4,8 +4,9 @@ import com.samsung.game.Screens.GameScreen;
 
 import static com.samsung.game.HelperClasses.Constants.PIXELS_PER_METRE;
 
-public class UIPaddle extends AbstractPaddle {//интеллект врага предельно простой, он просто следует иксу мяча, в будущем я улучшу его пуская фантомный мяч, чтобы узнать, куда он реземлится и туда направлю платформу
+public class UIPaddle extends AbstractPaddle {
 
+    public int speed;
     public UIPaddle(float x, float y, GameScreen gameScreen) {
         super(x, y, gameScreen);
     }

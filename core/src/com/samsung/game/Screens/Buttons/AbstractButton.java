@@ -14,10 +14,11 @@ public abstract class AbstractButton {
     protected float x, y;
     protected int width, height;
     protected Boot boot;
+    protected boolean toSetScreen = false;
 
 
     public AbstractButton(float x, float y, Boot boot) {
-        width = 800;
+        width = 600;
         height = 200;
         this.x = x - width/2f;
         this.y = y - height/2f;
@@ -31,7 +32,7 @@ public abstract class AbstractButton {
         if (!isButtonTouched()){
             batch.draw(textureDown, x, y, width, height);
         }
-        }
+    }
     public Boolean isButtonTouched(){
         if (Gdx.input.isTouched()){
             float touchPosX = Gdx.input.getX();

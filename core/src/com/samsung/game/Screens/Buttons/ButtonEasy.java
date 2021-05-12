@@ -1,18 +1,15 @@
 package com.samsung.game.Screens.Buttons;
 
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.samsung.game.Boot;
 import com.samsung.game.Screens.GameScreen;
 
-public class ButtonUI extends AbstractButton{
+public class ButtonEasy extends AbstractButton {
 
-    OrthographicCamera camera;
-
-    public ButtonUI(float x, float y, Boot boot) {
+    public ButtonEasy(float x, float y, Boot boot) {
         super(x, y, boot);
-        textureDown = new Texture("buttons/uiGameBtnU.png");
-        textureUp = new Texture("buttons/uiGameBtnD.png");
+        textureUp = new Texture("buttons/easyBtnD.png");
+        textureDown = new Texture("buttons/easyBtn.png");
     }
     public void update(){
         if (isButtonTouched()){
@@ -20,6 +17,7 @@ public class ButtonUI extends AbstractButton{
         }
         else {
             if (toSetScreen){
+                System.out.println("BRUH");
                 boot.setScreen(new GameScreen(boot));
             }
         }

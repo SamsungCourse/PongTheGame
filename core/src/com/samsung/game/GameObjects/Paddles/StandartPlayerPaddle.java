@@ -16,10 +16,10 @@ public class StandartPlayerPaddle extends AbstractPaddle {
         if(Gdx.input.isTouched()) {
             float bodyPosX = body.getPosition().x;
             float touchPosX = (Gdx.input.getX()) / PIXELS_PER_METRE;
-            if (touchPosX > bodyPosX + 1) {
+            if (touchPosX > bodyPosX + 0.5) {
                 velX = 1;
             }
-            if (touchPosX < bodyPosX - 1) {
+            if (touchPosX < bodyPosX - 0.5) {
                 velX = -1;
             }
         }
