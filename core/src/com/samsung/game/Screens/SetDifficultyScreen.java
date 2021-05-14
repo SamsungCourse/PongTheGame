@@ -14,8 +14,10 @@ import com.samsung.game.HelperClasses.Constants;
 import com.samsung.game.Screens.Buttons.ButtonEasy;
 import com.samsung.game.Screens.Buttons.ButtonHard;
 import com.samsung.game.Screens.Buttons.ButtonNormal;
+import com.samsung.game.Screens.Buttons.ExitButton;
 
 import static com.samsung.game.HelperClasses.Constants.BUTTON_HEIGHT;
+import static com.samsung.game.HelperClasses.Constants.DIFFICULTY_BUTTON_Y;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_HEIGHT;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_WIDTH;
 
@@ -29,6 +31,7 @@ public class SetDifficultyScreen extends ScreenAdapter {
     private ButtonHard buttonHard;
     private ButtonEasy buttonEasy;
     private ButtonNormal buttonNormal;
+    public ExitButton exitButton;
 
     private World world;
 
@@ -39,9 +42,10 @@ public class SetDifficultyScreen extends ScreenAdapter {
         background = new Texture("backgrounds/difficultyBg.png");
         batch = new SpriteBatch();
         world = new World(new Vector2(0,0), false);
-        buttonEasy = new ButtonEasy(SCREEN_WIDTH/2f, 1600, boot);
-        buttonNormal = new ButtonNormal(SCREEN_WIDTH/2f, 1600 - BUTTON_HEIGHT - 10, boot);
-        buttonHard = new ButtonHard(SCREEN_WIDTH/2f, 1600 - 2*BUTTON_HEIGHT - 20, boot);
+        buttonEasy = new ButtonEasy(SCREEN_WIDTH/2f, DIFFICULTY_BUTTON_Y, boot);
+        buttonNormal = new ButtonNormal(SCREEN_WIDTH/2f, DIFFICULTY_BUTTON_Y - BUTTON_HEIGHT - 30, boot);
+        buttonHard = new ButtonHard(SCREEN_WIDTH/2f, DIFFICULTY_BUTTON_Y - 2*BUTTON_HEIGHT - 60, boot);
+        exitButton = new ExitButton(SCREEN_WIDTH/2f, 700, boot);
     }
 
     public void update(){
@@ -51,6 +55,7 @@ public class SetDifficultyScreen extends ScreenAdapter {
         buttonEasy.update();
         buttonNormal.update();
         buttonHard.update();
+        exitButton.update();
 
         batch.setProjectionMatrix(camera.combined);
     }
@@ -68,6 +73,7 @@ public class SetDifficultyScreen extends ScreenAdapter {
         buttonEasy.render(batch);
         buttonNormal.render(batch);
         buttonHard.render(batch);
+        exitButton.render(batch);
         batch.end();
     }
 }

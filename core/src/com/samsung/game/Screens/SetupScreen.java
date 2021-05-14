@@ -6,18 +6,11 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.samsung.game.Boot;
 import com.samsung.game.Screens.Buttons.ButtonUI;
-import com.sun.org.apache.xpath.internal.operations.Or;
+import com.samsung.game.Screens.Buttons.PaddleChangeButton;
 
 import static com.samsung.game.HelperClasses.Constants.SCREEN_HEIGHT;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_WIDTH;
@@ -29,6 +22,7 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
     private OrthographicCamera camera;
     private SpriteBatch batch;
     private ButtonUI buttonUI;
+    private PaddleChangeButton paddleButton;
 
     private World world;
 
@@ -38,7 +32,8 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
         background = new Texture("backgrounds/introBg.png");
         batch = new SpriteBatch();
         world = new World(new Vector2(0,0), false);
-        buttonUI = new ButtonUI(500, 1200, boot);
+        buttonUI = new ButtonUI(SCREEN_WIDTH/2f, 1500, boot);
+        paddleButton = new PaddleChangeButton(SCREEN_WIDTH/2f, 1100, boot);
     }
 
     public void update(){
@@ -46,6 +41,7 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
 
         camera.update();
         buttonUI.update();
+        paddleButton.update();
 
         batch.setProjectionMatrix(camera.combined);
     }
@@ -60,6 +56,7 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
         batch.begin();
         batch.draw(background, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         buttonUI.render(batch);
+        paddleButton.render(batch);
         batch.end();
     }
 }

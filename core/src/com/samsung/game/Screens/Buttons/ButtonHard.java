@@ -10,8 +10,8 @@ public class ButtonHard extends AbstractButton {
 
     public ButtonHard(float x, float y, Boot boot) {
         super(x, y, boot);
-        textureUp = new Texture("buttons/hardBtnD.png");
-        textureDown = new Texture("buttons/hardBtn.png");
+        textureDown = new Texture("buttons/hardBtnD.png");
+        textureUp = new Texture("buttons/hardBtn.png");
         gameScreen = new GameScreen(boot);
     }
 

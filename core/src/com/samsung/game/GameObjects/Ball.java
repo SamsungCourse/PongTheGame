@@ -60,31 +60,36 @@ public class Ball {//класс пули
     public void update(){//здесь мы каждый раз переопределяем скорость по x и y
         velX = (float) (speed * Math.sin(Math.toRadians(angle)));//формула, благодаря которой можно найти координаты X и Y точки на окружности
         velY = (float) (speed * Math.cos(Math.toRadians(angle)));//сдвигая фигуру по этим координатам мы именно так как надо пермещаем обьект на все 360 градусов
-        x =  body.getPosition().x * PIXELS_PER_METRE - (width/2);//это для всех обьектов справедливые строки, они говорят, где находится обьект сейчас
-        y =  body.getPosition().y * PIXELS_PER_METRE - (width/2);
+        x =  body.getPosition().x * PIXELS_PER_METRE - (width/2f);//это для всех обьектов справедливые строки, они говорят, где находится обьект сейчас
+        y =  body.getPosition().y * PIXELS_PER_METRE - (width/2f);
 
         body.setLinearVelocity(velX, velY);
 
-        if (y < 0){//начисляем очки врагу и перезапускаем мяч, если мяч прошел через нашу сторону
+        if (y < 256){//начисляем очки врагу и перезапускаем мяч, если мяч прошел через нашу сторону
             gameScreen.getEnemy().score();
             reset();
             angle = getRandomAngle(new int[]{180, 157, 135, -157, -135});
         }
 
-        if (y > SCREEN_HEIGHT){//начисляем очки игроку и перезапускаем мяч, если мяч прошел стену врага
+        if (y > SCREEN_HEIGHT - 256){//начисляем очки игроку и перезапускаем мяч, если мяч прошел стену врага
             gameScreen.getPlayer().score();
             reset();
             angle = getRandomAngle(new int[]{0, 22, 45, -22, -45});
         }
-
-        if (angle < 100 && angle > 80 || angle > -100 && angle < -80){
+        System.out.println(angle);
+        if (angle == 90 || angle == 270 || angle == 450 || angle == 630){
+            System.out.println(angle + "!!!!!!");
             angle = getRandomAngle(new int[]{0, 22, 45, -22, -45, 180, 157, 135, -157, -135});
+        }
+
+        if (velY == 0 && velX == 0){
+            reset();
         }
     }
 
     public void reset(){
         speed = BALL_SPEED;
-        body.setTransform(SCREEN_WIDTH/2/ PIXELS_PER_METRE, SCREEN_HEIGHT/2/ PIXELS_PER_METRE, 0);
+        body.setTransform(SCREEN_WIDTH/2f/PIXELS_PER_METRE, SCREEN_HEIGHT/2f/PIXELS_PER_METRE, 0);
     }
 
     public void render(SpriteBatch batch){

@@ -9,8 +9,8 @@ import com.samsung.game.Screens.GameScreen;
 
 import static com.samsung.game.HelperClasses.Constants.PADDLE_SPEED;
 import static com.samsung.game.HelperClasses.Constants.PIXELS_PER_METRE;
-import static com.samsung.game.HelperClasses.Constants.PUDDLE_HEIGHT;
-import static com.samsung.game.HelperClasses.Constants.PUDDLE_WIDTH;
+import static com.samsung.game.HelperClasses.Constants.PADDLE_HEIGHT;
+import static com.samsung.game.HelperClasses.Constants.PADDLE_WIDTH;
 
 public abstract class AbstractPaddle {//это ракетка всех ракеток, от нее наследуемся, чтобы создать другие типы ракеток
 
@@ -27,8 +27,8 @@ public abstract class AbstractPaddle {//это ракетка всех раке�
         this.y = y;
         this.gameScreen = gameScreen;
         speed = PADDLE_SPEED;
-        width = PUDDLE_WIDTH;
-        height = PUDDLE_HEIGHT;
+        width = PADDLE_WIDTH;
+        height = PADDLE_HEIGHT;
         texture = new Texture("dot.png");
         body = BodyCreator.createBody(x, y, width, height,false,10000, gameScreen.getWorld(), contactType);
     }
