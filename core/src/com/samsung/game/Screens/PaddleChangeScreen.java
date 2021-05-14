@@ -58,26 +58,28 @@ public class PaddleChangeScreen extends ScreenAdapter {
     public void update() throws InterruptedException {
         world.step(1 / 60f, 6,2);
         if (redPaddleButton.isButtonTouched()){
-            gameScreen.player.paddleType = PaddleType.RED;
+            PlayerPaddle.paddleType = PaddleType.RED;
             redPaddleButton.isTouched = true;
             bluePaddleButton.isTouched = false;
             greenPaddleButton.isTouched = false;
             paddleButton.isTouched = false;
         }
         if (bluePaddleButton.isButtonTouched()){
+            PlayerPaddle.paddleType = PaddleType.BLUE;
             bluePaddleButton.isTouched = true;
             redPaddleButton.isTouched = false;
             greenPaddleButton.isTouched = false;
             paddleButton.isTouched = false;
         }
         if (paddleButton.isButtonTouched()){
-            gameScreen.player.paddleType = PaddleType.WHITE;
+            PlayerPaddle.paddleType = PaddleType.WHITE;
             paddleButton.isTouched = true;
             bluePaddleButton.isTouched = false;
             redPaddleButton.isTouched = false;
             greenPaddleButton.isTouched = false;
         }
         if (greenPaddleButton.isButtonTouched()) {
+            PlayerPaddle.paddleType = PaddleType.GREEN;
             greenPaddleButton.isTouched = true;
             paddleButton.isTouched = false;
             bluePaddleButton.isTouched = false;

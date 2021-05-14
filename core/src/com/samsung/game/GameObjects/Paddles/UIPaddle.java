@@ -1,5 +1,7 @@
 package com.samsung.game.GameObjects.Paddles;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.samsung.game.HelperClasses.BodyCreator;
 import com.samsung.game.Screens.GameScreen;
 
 import static com.samsung.game.HelperClasses.Constants.PIXELS_PER_METRE;
@@ -9,6 +11,8 @@ public class UIPaddle extends AbstractPaddle {
     public int speed;
     public UIPaddle(float x, float y, GameScreen gameScreen) {
         super(x, y, gameScreen);
+        texture = new Texture("dot.png");
+        body = BodyCreator.createBody(x, y, width, height,false,1000000, gameScreen.getWorld(), contactType);
     }
 
     @Override

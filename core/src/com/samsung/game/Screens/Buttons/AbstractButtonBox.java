@@ -14,7 +14,6 @@ public class AbstractButtonBox {
     protected int width, height;
     protected Boot boot;
     public boolean isTouched = false;
-    public boolean isOtherTouched = false;
 
 
     public AbstractButtonBox(float x, float y, Boot boot) {

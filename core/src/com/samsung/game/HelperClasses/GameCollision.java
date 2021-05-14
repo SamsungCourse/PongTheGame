@@ -10,6 +10,8 @@ import com.samsung.game.Screens.GameScreen;
 public class GameCollision implements ContactListener {//класс который применяется в GameScreen для обработки коллизий
 
     private GameScreen gameScreen;
+    public static int diapozoneP = 45;
+    public static int diapozoneE = 22;
 
     public GameCollision(GameScreen gameScreen){
         this.gameScreen = gameScreen;
@@ -27,8 +29,8 @@ public class GameCollision implements ContactListener {//класс которы
             //коллизия игрока и пули
             if (a.getUserData() == ContactType.PLAYER || b.getUserData() == ContactType.PLAYER){
                 gameScreen.getBall().reverseAngleY();
-                gameScreen.getBall().randomiseAngle();
-                gameScreen.getBall().incSpeed(5);
+                gameScreen.getBall().randomiseAngle(diapozoneP);
+                gameScreen.getBall().incSpeed();
             }
             //коллизия стены и пули
             if (a.getUserData() == ContactType.WALL || b.getUserData() == ContactType.WALL){
@@ -37,8 +39,8 @@ public class GameCollision implements ContactListener {//класс которы
             //коллизия врага и пули, пока что едентична игроку и пуле, но в будущем может изменяться
             if (a.getUserData() == ContactType.ENEMY || b.getUserData() == ContactType.ENEMY){
                 gameScreen.getBall().reverseAngleY();
-                gameScreen.getBall().randomiseAngle();
-                gameScreen.getBall().incSpeed(5);
+                gameScreen.getBall().randomiseAngle(diapozoneE);
+                gameScreen.getBall().incSpeed();
             }
         }
     }

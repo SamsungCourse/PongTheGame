@@ -2,15 +2,19 @@ package com.samsung.game.GameObjects.Paddles;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.samsung.game.GameObjects.Ball;
+import com.samsung.game.HelperClasses.BodyCreator;
+import com.samsung.game.HelperClasses.GameCollision;
 import com.samsung.game.HelperClasses.PaddleType;
 import com.samsung.game.Screens.GameScreen;
 
+import static com.samsung.game.HelperClasses.Constants.PADDLE_SPEED;
 import static com.samsung.game.HelperClasses.Constants.PADDLE_WIDTH;
 import static com.samsung.game.HelperClasses.Constants.PIXELS_PER_METRE;
 
 public class PlayerPaddle extends AbstractPaddle {
 
-    public PaddleType paddleType;
+    public static PaddleType paddleType = PaddleType.WHITE;
 
     public PlayerPaddle(float x, float y, GameScreen gameScreen) {
         super(x, y, gameScreen);
@@ -19,8 +23,21 @@ public class PlayerPaddle extends AbstractPaddle {
         }
         if (paddleType == PaddleType.RED){
             texture = new Texture("redDot.png");
-            width = PADDLE_WIDTH*2;
+            speed = PADDLE_SPEED - 15;
+            width = (int) (PADDLE_WIDTH*1.5);
+
         }
+        if (paddleType == PaddleType.BLUE){
+            texture = new Texture("blueDot.png");
+            Ball.incSpeed = 15;
+            width = (int) (PADDLE_WIDTH*0.9);
+            speed = PADDLE_SPEED + 10;
+        }
+        if (paddleType == PaddleType.GREEN){
+            texture = new Texture("greenDot.png");
+            GameCollision.diapozoneP = 45;
+        }
+        body = BodyCreator.createBody(x, y, width, height,false,1000000, gameScreen.getWorld(), contactType);
     }
 
     @Override

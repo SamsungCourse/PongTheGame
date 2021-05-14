@@ -29,16 +29,10 @@ public abstract class AbstractPaddle {//это ракетка всех раке�
         speed = PADDLE_SPEED;
         width = PADDLE_WIDTH;
         height = PADDLE_HEIGHT;
-        texture = new Texture("dot.png");
-        body = BodyCreator.createBody(x, y, width, height,false,10000, gameScreen.getWorld(), contactType);
     }
 
     public int getScore() {
         return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
     }
 
     public void update(){

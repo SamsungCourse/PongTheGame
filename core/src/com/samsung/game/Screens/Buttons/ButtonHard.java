@@ -21,6 +21,7 @@ public class ButtonHard extends AbstractButton {
         }
         else {
             if (toSetScreen){
+                gameScreen.getBall().speed = 40;
                 gameScreen.getEnemy().speed = 50;
                 boot.setScreen(gameScreen);
             }

@@ -10,9 +10,9 @@ public class PaddleButton extends AbstractButtonBox {
 
     public PaddleButton(float x, float y, Boot boot) {
         super(x, y, boot);
-        isTouched = true;
         textureUntouched = new Texture("buttons/paddle.png");
         textureTouched = new Texture("buttons/paddleA.png");
         gameScreen = new GameScreen(boot);
+        isTouched = true;
     }
 }

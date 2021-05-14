@@ -16,7 +16,7 @@ public class Constants {//все инты хранятся здесь
     public static final int NUMBERS_WIDTH = 100;
     public static final int NUMBER_SPACE = 50;
     public static final int SCORE_SPACE = 200;
-    public static final int PADDLE_SPEED = 42;
+    public static final int PADDLE_SPEED = 56;
     public static final int BALL_SPEED = 26;
     public static final int BUTTON_HEIGHT = 200;
     public static final int BUTTON_WIDTH = 800;

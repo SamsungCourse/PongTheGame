@@ -22,6 +22,7 @@ public class Ball {//класс пули
     private GameScreen gameScreen;
     private Texture texture;
     public int angle;
+    public static int incSpeed = 10;
 
     public Ball(GameScreen gameScreen) {
         x = SCREEN_WIDTH / 2f;
@@ -40,8 +41,8 @@ public class Ball {//класс пули
         return arr[(int) (Math.random()*(arr.length - 1))];
     }
 
-    public void randomiseAngle(){//дает рандомное изменение угла от -22 до +22, придает игре неожиданностей
-        int num = (int) (Math.random()*46) - 22;
+    public void randomiseAngle(int diap){//дает рандомное изменение угла от -22 до +22, придает игре неожиданностей
+        int num = (int) (Math.random()*diap) - diap/2;
         angle += num;
     }
 
@@ -53,7 +54,7 @@ public class Ball {//класс пули
         angle = - angle;
     }
 
-    public void incSpeed(int incSpeed){
+    public void incSpeed(){
         speed += incSpeed;
     }
 
@@ -76,14 +77,21 @@ public class Ball {//класс пули
             reset();
             angle = getRandomAngle(new int[]{0, 22, 45, -22, -45});
         }
-        System.out.println(angle);
-        if (angle == 90 || angle == 270 || angle == 450 || angle == 630){
-            System.out.println(angle + "!!!!!!");
-            angle = getRandomAngle(new int[]{0, 22, 45, -22, -45, 180, 157, 135, -157, -135});
+
+        if (angle > 360){
+            System.out.println(angle);
+            angle = 360 - angle;
+            System.out.println(angle);
+        }
+        if (angle < -360){
+            System.out.println(angle);
+            angle = 360 + angle;
+            System.out.println(angle);
         }
 
-        if (velY == 0 && velX == 0){
+        if (body.getLinearVelocity().x == 0 && body.getLinearVelocity().y == 0){
             reset();
+            angle = getRandomAngle(new int[]{0, 45, -45, 135, -135});
         }
     }
 
