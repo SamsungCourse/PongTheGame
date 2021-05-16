@@ -12,6 +12,7 @@ public class Boot extends Game {//игровой класс, который за
 
 	@Override
 	public void create () {
+		System.out.println(SCREEN_HEIGHT + " " + SCREEN_WIDTH);
 		setScreen(new SetupScreen(this));
 	}
 }

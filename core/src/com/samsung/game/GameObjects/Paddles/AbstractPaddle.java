@@ -1,5 +1,7 @@
 package com.samsung.game.GameObjects.Paddles;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -15,11 +17,13 @@ import static com.samsung.game.HelperClasses.Constants.PADDLE_WIDTH;
 public abstract class AbstractPaddle {//это ракетка всех ракеток, от нее наследуемся, чтобы создать другие типы ракеток
 
     protected Body body;
-    protected float x, y, speed, velX;
+    protected float x, y, speed;
+    protected float velX = 0;
     protected int width, height, score;
     protected Texture texture;
     protected GameScreen gameScreen;
     protected ContactType contactType;
+    protected boolean available = Gdx.input.isPeripheralAvailable(Input.Peripheral.Accelerometer);
 
     public AbstractPaddle(float x, float y, GameScreen gameScreen){
         contactType = ContactType.PLAYER;

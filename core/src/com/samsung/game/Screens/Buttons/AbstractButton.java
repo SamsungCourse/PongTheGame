@@ -38,7 +38,6 @@ public abstract class AbstractButton {
         if (Gdx.input.isTouched()){
             float touchPosX = Gdx.input.getX();
             float touchPosY = SCREEN_HEIGHT - Gdx.input.getY();
-            System.out.println(touchPosX + "  " + touchPosY + "  " + x + "  " + y);
             return touchPosX >= x && touchPosX <= x + width && touchPosY >= y && touchPosY <= y + height;
         }
         return false;

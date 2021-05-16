@@ -6,12 +6,9 @@ import com.samsung.game.Screens.GameScreen;
 
 public class RedPaddleButton extends AbstractButtonBox{
 
-    GameScreen gameScreen;
-
     public RedPaddleButton(float x, float y, Boot boot) {
-        super(x, y, boot);
-        textureUntouched = new Texture("buttons/redPaddle.png");
-        textureTouched = new Texture("buttons/redPaddleA.png");
-        gameScreen = new GameScreen(boot);
+        super(x, y);
+        textureUntouched = new Texture("buttons/paddle_change/redPaddle.png");
+        textureTouched = new Texture("buttons/paddle_change/redPaddleA.png");
     }
 }

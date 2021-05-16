@@ -12,16 +12,14 @@ public class AbstractButtonBox {
     protected Texture textureTouched;
     protected float x, y;
     protected int width, height;
-    protected Boot boot;
     public boolean isTouched = false;
 
 
-    public AbstractButtonBox(float x, float y, Boot boot) {
+    public AbstractButtonBox(float x, float y) {
         width = 800;
         height = 200;
         this.x = x - width/2f;
         this.y = y - height/2f;
-        this.boot = boot;
     }
 
     public void render(SpriteBatch batch) {
@@ -36,7 +34,6 @@ public class AbstractButtonBox {
         if (Gdx.input.isTouched()){
             float touchPosX = Gdx.input.getX();
             float touchPosY = SCREEN_HEIGHT - Gdx.input.getY();
-            System.out.println(touchPosX + "  " + touchPosY + "  " + x + "  " + y);
             return touchPosX >= x && touchPosX <= x + width && touchPosY >= y && touchPosY <= y + height;
         }
         return false;

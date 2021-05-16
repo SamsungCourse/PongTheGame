@@ -11,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.samsung.game.Boot;
 import com.samsung.game.Screens.Buttons.ButtonUI;
 import com.samsung.game.Screens.Buttons.PaddleChangeButton;
+import com.samsung.game.Screens.Buttons.SettingsButton;
 
 import static com.samsung.game.HelperClasses.Constants.SCREEN_HEIGHT;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_WIDTH;
@@ -23,6 +24,7 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
     private SpriteBatch batch;
     private ButtonUI buttonUI;
     private PaddleChangeButton paddleButton;
+    private SettingsButton settingsButton;
 
     private World world;
 
@@ -34,15 +36,16 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
         world = new World(new Vector2(0,0), false);
         buttonUI = new ButtonUI(SCREEN_WIDTH/2f, 1500, boot);
         paddleButton = new PaddleChangeButton(SCREEN_WIDTH/2f, 1100, boot);
+        settingsButton = new SettingsButton(SCREEN_WIDTH/2f, 700, boot);
     }
 
-    public void update(){
+    public void update() {
         world.step(1 / 60f, 6,2);
 
         camera.update();
         buttonUI.update();
         paddleButton.update();
-
+        settingsButton.update();
         batch.setProjectionMatrix(camera.combined);
     }
 
@@ -57,6 +60,7 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
         batch.draw(background, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         buttonUI.render(batch);
         paddleButton.render(batch);
+        settingsButton.render(batch);
         batch.end();
     }
 }

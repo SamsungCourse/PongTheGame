@@ -15,6 +15,7 @@ import static com.samsung.game.HelperClasses.Constants.PIXELS_PER_METRE;
 public class PlayerPaddle extends AbstractPaddle {
 
     public static PaddleType paddleType = PaddleType.WHITE;
+    public static boolean isAccelerationMove = false;
 
     public PlayerPaddle(float x, float y, GameScreen gameScreen) {
         super(x, y, gameScreen);
@@ -47,14 +48,26 @@ public class PlayerPaddle extends AbstractPaddle {
     }
 
     private void move(){
-        if(Gdx.input.isTouched()) {
-            float bodyPosX = body.getPosition().x;
-            float touchPosX = (Gdx.input.getX()) / PIXELS_PER_METRE;
-            if (touchPosX > bodyPosX + 0.5) {
-                velX = 1;
+        if (!isAccelerationMove || !available) {
+            if (Gdx.input.isTouched()) {
+                float bodyPosX = body.getPosition().x;
+                float touchPosX = (Gdx.input.getX()) / PIXELS_PER_METRE;
+                if (touchPosX > bodyPosX + 0.5) {
+                    velX = 1;
+                }
+                if (touchPosX < bodyPosX - 0.5) {
+                    velX = -1;
+                }
             }
-            if (touchPosX < bodyPosX - 0.5) {
+        }
+        if (isAccelerationMove && available) {
+            float accelX = Gdx.input.getAccelerometerX();
+            System.out.println(accelX);
+            if (accelX >= 1){
                 velX = -1;
+            }
+            if (accelX <= -1){
+                velX = 1;
             }
         }
         body.setLinearVelocity(velX * speed, 0);

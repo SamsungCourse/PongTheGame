@@ -9,9 +9,8 @@ public class GreenPaddleButton extends AbstractButtonBox{
     GameScreen gameScreen;
 
     public GreenPaddleButton(float x, float y, Boot boot) {
-        super(x, y, boot);
-        textureUntouched = new Texture("buttons/greenPaddle.png");
-        textureTouched = new Texture("buttons/greenPaddleA.png");
-        gameScreen = new GameScreen(boot);
+        super(x, y);
+        textureUntouched = new Texture("buttons/paddle_change/greenPaddle.png");
+        textureTouched = new Texture("buttons/paddle_change/greenPaddleA.png");
     }
 }
