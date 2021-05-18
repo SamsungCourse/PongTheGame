@@ -17,7 +17,8 @@ import static com.samsung.game.HelperClasses.Constants.PADDLE_WIDTH;
 public abstract class AbstractPaddle {//это ракетка всех ракеток, от нее наследуемся, чтобы создать другие типы ракеток
 
     protected Body body;
-    protected float x, y, speed;
+    protected float x, y;
+    public int speed;
     protected float velX = 0;
     protected int width, height, score;
     protected Texture texture;

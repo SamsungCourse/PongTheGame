@@ -2,6 +2,7 @@ package com.samsung.game.Screens.Buttons;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.samsung.game.Boot;
+import com.samsung.game.GameObjects.Ball;
 import com.samsung.game.HelperClasses.Constants;
 import com.samsung.game.Screens.GameScreen;
 
@@ -27,6 +28,7 @@ public class ButtonNormal extends AbstractButton {
                 if (Boot.volume){
                     touch.play();
                 }
+                Ball.incSpeed = 6;
                 gameScreen.getEnemy().speed = 50;
                 boot.setScreen(gameScreen);
             }

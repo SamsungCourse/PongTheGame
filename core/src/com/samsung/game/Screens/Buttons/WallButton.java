@@ -10,6 +10,7 @@ import static com.samsung.game.HelperClasses.AdaptiveMaker.adaptiveHeight;
 import static com.samsung.game.HelperClasses.AdaptiveMaker.adaptiveWidth;
 
 public class WallButton extends AbstractButton {
+
     public WallButton(float x, float y, Boot boot) {
         super(x, y, boot);
         height = (int) adaptiveHeight(300);

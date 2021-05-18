@@ -2,6 +2,7 @@ package com.samsung.game.Screens.Buttons;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.samsung.game.Boot;
+import com.samsung.game.GameObjects.Ball;
 import com.samsung.game.Screens.SettingsScreen;
 import com.samsung.game.Screens.SetupScreen;
 
@@ -33,6 +34,7 @@ public class SettingsButton extends AbstractButton{
         }
         else {
             if (toSetScreen){
+                Ball.incSpeed = 0;
                 boot.setScreen(new SettingsScreen(boot));
             }
         }

@@ -9,6 +9,7 @@ import com.samsung.game.HelperClasses.BodyCreator;
 import com.samsung.game.HelperClasses.ContactType;
 import com.samsung.game.HelperClasses.ScreenTypePaddle;
 import com.samsung.game.Screens.GameScreen;
+import com.samsung.game.Screens.SetupScreen;
 
 import static com.samsung.game.HelperClasses.Constants.BALL_HEIGHT;
 import static com.samsung.game.HelperClasses.Constants.BALL_SPEED;
@@ -27,12 +28,14 @@ public class Ball {//класс пули
     private Texture texture;
     public int angle;
     public static int incSpeed = 5;
+    private Boot boot;
 
-    public Ball(GameScreen gameScreen) {
+    public Ball(GameScreen gameScreen, Boot boot) {
         x = SCREEN_WIDTH / 2f;
         y = SCREEN_HEIGHT / 2f;
         speed = BALL_SPEED;
         angle = getRandomAngle(new int[]{0, 45, -45, 135, -135});
+        this.boot = boot;
 
         texture = new Texture("dot.png");
         this.gameScreen = gameScreen;
@@ -62,6 +65,10 @@ public class Ball {//класс пули
         speed += incSpeed;
     }
 
+    public void incSpeedOnNumber(int num){
+        speed += num;
+    }
+
     public void update(){//здесь мы каждый раз переопределяем скорость по x и y
         velX = (float) (speed * Math.sin(Math.toRadians(angle)));//формула, благодаря которой можно найти координаты X и Y точки на окружности
         velY = (float) (speed * Math.cos(Math.toRadians(angle)));//сдвигая фигуру по этим координатам мы именно так как надо пермещаем обьект на все 360 градусов
@@ -71,12 +78,17 @@ public class Ball {//класс пули
         body.setLinearVelocity(velX, velY);
 
         if (y < PLAYER_Y - 20){//начисляем очки врагу и перезапускаем мяч, если мяч прошел через нашу сторону
-            gameScreen.getEnemy().score();
-            if (Boot.volume){
-                gameScreen.lvlUp.play();
+//            if (UIPaddle.type == ScreenTypePaddle.WALL_SCREEN){
+//                boot.setScreen(new SetupScreen(boot));
+//            }
+//            else {
+                gameScreen.getEnemy().score();
+                if (Boot.volume) {
+                    gameScreen.lvlUp.play();
+//                }
+                reset();
+                angle = getRandomAngle(new int[]{180, 157, 135, -157, -135});
             }
-            reset();
-            angle = getRandomAngle(new int[]{180, 157, 135, -157, -135});
         }
         if (UIPaddle.type == ScreenTypePaddle.GAME_SCREEN) {
             if (y > SCREEN_HEIGHT - PLAYER_Y + 20) {//начисляем очки игроку и перезапускаем мяч, если мяч прошел стену врага

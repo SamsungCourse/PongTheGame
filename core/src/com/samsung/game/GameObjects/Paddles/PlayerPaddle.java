@@ -30,7 +30,6 @@ public class PlayerPaddle extends AbstractPaddle {
         }
         if (paddleType == PaddleType.BLUE){
             texture = new Texture("blueDot.png");
-            Ball.incSpeed = 15;
             width = (int) (PADDLE_WIDTH*0.9);
             speed = PADDLE_SPEED + 10;
         }
