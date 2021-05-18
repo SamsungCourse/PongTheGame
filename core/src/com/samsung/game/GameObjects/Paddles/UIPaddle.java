@@ -42,8 +42,8 @@ public class UIPaddle extends AbstractPaddle {
         }
         if (type == ScreenTypePaddle.WALL_SCREEN){
             this.gameScreen.getBall().speed = 40;
-            if(body.getPosition().y*PIXELS_PER_METRE > SCREEN_HEIGHT - 900){
-                System.out.println(body.getPosition().y*PIXELS_PER_METRE + "  " + (SCREEN_HEIGHT - 900));
+            if(body.getPosition().y*PIXELS_PER_METRE > SCREEN_HEIGHT - 800){
+                System.out.println(body.getPosition().y*PIXELS_PER_METRE + "  " + (SCREEN_HEIGHT - 800));
                 velY = -0.5f;
             }
             else{

@@ -78,18 +78,19 @@ public class Ball {//класс пули
         body.setLinearVelocity(velX, velY);
 
         if (y < PLAYER_Y - 20){//начисляем очки врагу и перезапускаем мяч, если мяч прошел через нашу сторону
-//            if (UIPaddle.type == ScreenTypePaddle.WALL_SCREEN){
-//                boot.setScreen(new SetupScreen(boot));
-//            }
-//            else {
                 gameScreen.getEnemy().score();
                 if (Boot.volume) {
                     gameScreen.lvlUp.play();
-//                }
+                }
+            if (UIPaddle.type == ScreenTypePaddle.GAME_SCREEN){
                 reset();
                 angle = getRandomAngle(new int[]{180, 157, 135, -157, -135});
             }
-        }
+            if (UIPaddle.type == ScreenTypePaddle.WALL_SCREEN){
+                reset();
+                angle = 180;
+            }
+            }
         if (UIPaddle.type == ScreenTypePaddle.GAME_SCREEN) {
             if (y > SCREEN_HEIGHT - PLAYER_Y + 20) {//начисляем очки игроку и перезапускаем мяч, если мяч прошел стену врага
                 gameScreen.getPlayer().score();
