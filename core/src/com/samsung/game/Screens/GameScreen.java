@@ -10,17 +10,15 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
-import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.samsung.game.Boot;
 import com.samsung.game.GameObjects.Ball;
+import com.samsung.game.GameObjects.HorizontalWall;
 import com.samsung.game.GameObjects.Paddles.UIPaddle;
 import com.samsung.game.GameObjects.Paddles.PlayerPaddle;
 import com.samsung.game.GameObjects.Wall;
 import com.samsung.game.HelperClasses.GameCollision;
-import com.samsung.game.Screens.Buttons.ExitButton;
 
-import static com.samsung.game.HelperClasses.AdaptiveMaker.adaptiveHeight;
 import static com.samsung.game.HelperClasses.Constants.NUMBERS_HEIGHT;
 import static com.samsung.game.HelperClasses.Constants.NUMBERS_WIDTH;
 import static com.samsung.game.HelperClasses.Constants.NUMBER_SPACE;
@@ -45,6 +43,7 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
     private Ball ball;
     private Wall leftWall, rightWall;
     private UIPaddle enemy;
+    private HorizontalWall wallH;
     public Sound beat = Gdx.audio.newSound(Gdx.files.internal("sounds/touch.mp3"));
     public Sound lvlUp = Gdx.audio.newSound(Gdx.files.internal("sounds/upper_beat.mp3"));
 
@@ -63,7 +62,8 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
         this.boot = boot;
 
         //все падлы
-        enemy = new UIPaddle(SCREEN_WIDTH/2f, SCREEN_HEIGHT - PLAYER_Y, this);
+        enemy = new UIPaddle(SCREEN_WIDTH / 2f, SCREEN_HEIGHT - PLAYER_Y, this);
+
         player = new PlayerPaddle(SCREEN_WIDTH/2f, PLAYER_Y, this);
         ball = new Ball(this);
         leftWall = new Wall(WALL_WIDTH/2f, this);
@@ -129,6 +129,7 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
         batch.begin();
 
         batch.draw(background,0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+
         enemy.render(batch);
         player.render(batch);
         ball.render(batch);

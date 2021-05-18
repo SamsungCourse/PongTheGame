@@ -4,8 +4,10 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.samsung.game.Boot;
+import com.samsung.game.GameObjects.Paddles.UIPaddle;
 import com.samsung.game.HelperClasses.BodyCreator;
 import com.samsung.game.HelperClasses.ContactType;
+import com.samsung.game.HelperClasses.ScreenTypePaddle;
 import com.samsung.game.Screens.GameScreen;
 
 import static com.samsung.game.HelperClasses.Constants.BALL_HEIGHT;
@@ -76,14 +78,15 @@ public class Ball {//класс пули
             reset();
             angle = getRandomAngle(new int[]{180, 157, 135, -157, -135});
         }
-
-        if (y > SCREEN_HEIGHT - PLAYER_Y + 20){//начисляем очки игроку и перезапускаем мяч, если мяч прошел стену врага
-            gameScreen.getPlayer().score();
-            if (Boot.volume){
-                gameScreen.lvlUp.play();
+        if (UIPaddle.type == ScreenTypePaddle.GAME_SCREEN) {
+            if (y > SCREEN_HEIGHT - PLAYER_Y + 20) {//начисляем очки игроку и перезапускаем мяч, если мяч прошел стену врага
+                gameScreen.getPlayer().score();
+                if (Boot.volume) {
+                    gameScreen.lvlUp.play();
+                }
+                reset();
+                angle = getRandomAngle(new int[]{0, 22, 45, -22, -45});
             }
-            reset();
-            angle = getRandomAngle(new int[]{0, 22, 45, -22, -45});
         }
 
         if (angle > 360){

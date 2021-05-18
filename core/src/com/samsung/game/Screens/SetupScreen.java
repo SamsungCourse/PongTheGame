@@ -13,6 +13,7 @@ import com.samsung.game.Boot;
 import com.samsung.game.Screens.Buttons.ButtonUI;
 import com.samsung.game.Screens.Buttons.PaddleChangeButton;
 import com.samsung.game.Screens.Buttons.SettingsButton;
+import com.samsung.game.Screens.Buttons.WallButton;
 
 import static com.samsung.game.HelperClasses.AdaptiveMaker.adaptiveHeight;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_HEIGHT;
@@ -27,6 +28,7 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
     private ButtonUI buttonUI;
     private PaddleChangeButton paddleButton;
     private SettingsButton settingsButton;
+    private WallButton wallButton;
     private World world;
 
 
@@ -37,8 +39,10 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
         batch = new SpriteBatch();
         world = new World(new Vector2(0,0), false);
         buttonUI = new ButtonUI(SCREEN_WIDTH/2f, adaptiveHeight(1500), boot);
-        paddleButton = new PaddleChangeButton(SCREEN_WIDTH/2f, adaptiveHeight(1100), boot);
-        settingsButton = new SettingsButton(SCREEN_WIDTH/2f, adaptiveHeight(700), boot);
+        paddleButton = new PaddleChangeButton(SCREEN_WIDTH/2f, adaptiveHeight(700), boot);
+        settingsButton = new SettingsButton(SCREEN_WIDTH/2f, adaptiveHeight(300), boot);
+        wallButton = new WallButton(SCREEN_WIDTH/2f, adaptiveHeight(1100), boot);
+
     }
 
     public void update(){
@@ -48,6 +52,7 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
         buttonUI.update();
         paddleButton.update();
         settingsButton.update();
+        wallButton.update();
         batch.setProjectionMatrix(camera.combined);
     }
 
@@ -63,6 +68,7 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
         buttonUI.render(batch);
         paddleButton.render(batch);
         settingsButton.render(batch);
+        wallButton.render(batch);
         batch.end();
     }
 }

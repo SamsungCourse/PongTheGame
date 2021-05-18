@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.samsung.game.Boot;
 import com.samsung.game.GameObjects.Paddles.PlayerPaddle;
+import com.samsung.game.GameObjects.Paddles.UIPaddle;
 import com.samsung.game.Screens.GameScreen;
 
 public class GameCollision implements ContactListener {//класс который применяется в GameScreen для обработки коллизий
@@ -51,9 +52,19 @@ public class GameCollision implements ContactListener {//класс которы
                 if (Boot.volume){
                     gameScreen.beat.play();
                 }
-                gameScreen.getBall().reverseAngleY();
-                gameScreen.getBall().randomiseAngle(diapozoneE);
-                gameScreen.getBall().incSpeed();
+                if (UIPaddle.type == ScreenTypePaddle.WALL_SCREEN) {
+                    System.out.println("начислил");
+                    gameScreen.getPlayer().score();
+                    gameScreen.getBall().reverseAngleY();
+                    gameScreen.getBall().randomiseAngle(diapozoneE);
+                    gameScreen.getBall().incSpeed();
+                }
+                if (UIPaddle.type == ScreenTypePaddle.GAME_SCREEN) {
+                    System.out.println("нееееееначислил");
+                    gameScreen.getBall().reverseAngleY();
+                    gameScreen.getBall().randomiseAngle(diapozoneE);
+                    gameScreen.getBall().incSpeed();
+                }
             }
         }
     }
