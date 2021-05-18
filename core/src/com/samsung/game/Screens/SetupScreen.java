@@ -2,6 +2,7 @@ package com.samsung.game.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -13,6 +14,7 @@ import com.samsung.game.Screens.Buttons.ButtonUI;
 import com.samsung.game.Screens.Buttons.PaddleChangeButton;
 import com.samsung.game.Screens.Buttons.SettingsButton;
 
+import static com.samsung.game.HelperClasses.AdaptiveMaker.adaptiveHeight;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_HEIGHT;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_WIDTH;
 
@@ -25,8 +27,8 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
     private ButtonUI buttonUI;
     private PaddleChangeButton paddleButton;
     private SettingsButton settingsButton;
-
     private World world;
+
 
     public SetupScreen(Boot boot){
         camera = new OrthographicCamera();
@@ -34,12 +36,12 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
         background = new Texture("backgrounds/introBg.png");
         batch = new SpriteBatch();
         world = new World(new Vector2(0,0), false);
-        buttonUI = new ButtonUI(SCREEN_WIDTH/2f, 1500, boot);
-        paddleButton = new PaddleChangeButton(SCREEN_WIDTH/2f, 1100, boot);
-        settingsButton = new SettingsButton(SCREEN_WIDTH/2f, 700, boot);
+        buttonUI = new ButtonUI(SCREEN_WIDTH/2f, adaptiveHeight(1500), boot);
+        paddleButton = new PaddleChangeButton(SCREEN_WIDTH/2f, adaptiveHeight(1100), boot);
+        settingsButton = new SettingsButton(SCREEN_WIDTH/2f, adaptiveHeight(700), boot);
     }
 
-    public void update() {
+    public void update(){
         world.step(1 / 60f, 6,2);
 
         camera.update();

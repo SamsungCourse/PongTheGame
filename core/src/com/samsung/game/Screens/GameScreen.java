@@ -2,6 +2,7 @@ package com.samsung.game.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -17,7 +18,9 @@ import com.samsung.game.GameObjects.Paddles.UIPaddle;
 import com.samsung.game.GameObjects.Paddles.PlayerPaddle;
 import com.samsung.game.GameObjects.Wall;
 import com.samsung.game.HelperClasses.GameCollision;
+import com.samsung.game.Screens.Buttons.ExitButton;
 
+import static com.samsung.game.HelperClasses.AdaptiveMaker.adaptiveHeight;
 import static com.samsung.game.HelperClasses.Constants.NUMBERS_HEIGHT;
 import static com.samsung.game.HelperClasses.Constants.NUMBERS_WIDTH;
 import static com.samsung.game.HelperClasses.Constants.NUMBER_SPACE;
@@ -35,12 +38,15 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
     private SpriteBatch batch;
     private World world;
     private GameCollision gameCollision;
+    private Boot boot;
 
     //игровые обьекты
     public PlayerPaddle player;
     private Ball ball;
     private Wall leftWall, rightWall;
     private UIPaddle enemy;
+    public Sound beat = Gdx.audio.newSound(Gdx.files.internal("sounds/touch.mp3"));
+    public Sound lvlUp = Gdx.audio.newSound(Gdx.files.internal("sounds/upper_beat.mp3"));
 
     private TextureRegion[] numbers;
 
@@ -54,12 +60,12 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
         gameCollision = new GameCollision(this);
         world.setContactListener(gameCollision);
         background = new Texture("backgrounds/gameBg.png");
+        this.boot = boot;
 
         //все падлы
         enemy = new UIPaddle(SCREEN_WIDTH/2f, SCREEN_HEIGHT - PLAYER_Y, this);
         player = new PlayerPaddle(SCREEN_WIDTH/2f, PLAYER_Y, this);
         ball = new Ball(this);
-
         leftWall = new Wall(WALL_WIDTH/2f, this);
         rightWall = new Wall(SCREEN_WIDTH - WALL_WIDTH/2f, this);
 
@@ -97,6 +103,10 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
         enemy.update();
         player.update();
         ball.update();
+
+        if (Gdx.input.isCatchKey(1)){
+            boot.setScreen(new SetupScreen(boot));
+        }
 
         batch.setProjectionMatrix(camera.combined);
     }

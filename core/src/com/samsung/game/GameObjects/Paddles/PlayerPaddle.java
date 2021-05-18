@@ -36,7 +36,6 @@ public class PlayerPaddle extends AbstractPaddle {
         }
         if (paddleType == PaddleType.GREEN){
             texture = new Texture("greenDot.png");
-            GameCollision.diapozoneP = 45;
         }
         body = BodyCreator.createBody(x, y, width, height,false,1000000, gameScreen.getWorld(), contactType);
     }

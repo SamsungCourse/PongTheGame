@@ -1,6 +1,7 @@
 package com.samsung.game.Screens.Buttons;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.samsung.game.Boot;
@@ -16,6 +17,8 @@ public abstract class AbstractButton {
     protected int width, height;
     protected Boot boot;
     protected boolean toSetScreen = false;
+    protected Sound touch = Gdx.audio.newSound(Gdx.files.internal("sounds/beat.mp3"));
+    protected boolean toSoundPlay = true;
 
 
     public AbstractButton(float x, float y, Boot boot) {

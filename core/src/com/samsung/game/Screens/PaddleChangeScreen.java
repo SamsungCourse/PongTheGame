@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.World;
 import com.samsung.game.Boot;
 import com.samsung.game.GameObjects.Paddles.PlayerPaddle;
+import com.samsung.game.HelperClasses.AdaptiveMaker;
 import com.samsung.game.HelperClasses.PaddleType;
 import com.samsung.game.Screens.Buttons.BluePaddleButton;
 import com.samsung.game.Screens.Buttons.ExitButton;
@@ -18,6 +19,7 @@ import com.samsung.game.Screens.Buttons.GreenPaddleButton;
 import com.samsung.game.Screens.Buttons.PaddleButton;
 import com.samsung.game.Screens.Buttons.RedPaddleButton;
 
+import static com.samsung.game.HelperClasses.AdaptiveMaker.adaptiveHeight;
 import static com.samsung.game.HelperClasses.Constants.BUTTON_HEIGHT;
 import static com.samsung.game.HelperClasses.Constants.PADDLE_BUTTON_Y;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_HEIGHT;
@@ -48,11 +50,11 @@ public class PaddleChangeScreen extends ScreenAdapter {
         world = new World(new Vector2(0,0), false);
         gameScreen = new GameScreen(boot);
 
-        redPaddleButton = new RedPaddleButton(SCREEN_WIDTH/2f, PADDLE_BUTTON_Y, boot);
-        bluePaddleButton = new BluePaddleButton(SCREEN_WIDTH/2f, PADDLE_BUTTON_Y - BUTTON_HEIGHT - 30, boot);
-        greenPaddleButton = new GreenPaddleButton(SCREEN_WIDTH/2f, PADDLE_BUTTON_Y - 2*BUTTON_HEIGHT - 60, boot);
+        redPaddleButton = new RedPaddleButton(SCREEN_WIDTH/2f, PADDLE_BUTTON_Y);
+        bluePaddleButton = new BluePaddleButton(SCREEN_WIDTH/2f, PADDLE_BUTTON_Y - BUTTON_HEIGHT - 30);
+        greenPaddleButton = new GreenPaddleButton(SCREEN_WIDTH/2f, PADDLE_BUTTON_Y - 2*BUTTON_HEIGHT - 60);
         paddleButton = new PaddleButton(SCREEN_WIDTH/2f, PADDLE_BUTTON_Y - 3*BUTTON_HEIGHT - 90, boot);
-        exitButton = new ExitButton(SCREEN_WIDTH/2f, 550, boot);
+        exitButton = new ExitButton(SCREEN_WIDTH/2f, adaptiveHeight(550), boot);
     }
 
     public void update() throws InterruptedException {

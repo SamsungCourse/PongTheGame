@@ -3,6 +3,7 @@ package com.samsung.game.GameObjects;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.samsung.game.Boot;
 import com.samsung.game.HelperClasses.BodyCreator;
 import com.samsung.game.HelperClasses.ContactType;
 import com.samsung.game.Screens.GameScreen;
@@ -11,6 +12,7 @@ import static com.samsung.game.HelperClasses.Constants.BALL_HEIGHT;
 import static com.samsung.game.HelperClasses.Constants.BALL_SPEED;
 import static com.samsung.game.HelperClasses.Constants.BALL_WIDTH;
 import static com.samsung.game.HelperClasses.Constants.PIXELS_PER_METRE;
+import static com.samsung.game.HelperClasses.Constants.PLAYER_Y;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_HEIGHT;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_WIDTH;
 
@@ -22,7 +24,7 @@ public class Ball {//класс пули
     private GameScreen gameScreen;
     private Texture texture;
     public int angle;
-    public static int incSpeed = 10;
+    public static int incSpeed = 5;
 
     public Ball(GameScreen gameScreen) {
         x = SCREEN_WIDTH / 2f;
@@ -66,14 +68,20 @@ public class Ball {//класс пули
 
         body.setLinearVelocity(velX, velY);
 
-        if (y < 256){//начисляем очки врагу и перезапускаем мяч, если мяч прошел через нашу сторону
+        if (y < PLAYER_Y - 20){//начисляем очки врагу и перезапускаем мяч, если мяч прошел через нашу сторону
             gameScreen.getEnemy().score();
+            if (Boot.volume){
+                gameScreen.lvlUp.play();
+            }
             reset();
             angle = getRandomAngle(new int[]{180, 157, 135, -157, -135});
         }
 
-        if (y > SCREEN_HEIGHT - 256){//начисляем очки игроку и перезапускаем мяч, если мяч прошел стену врага
+        if (y > SCREEN_HEIGHT - PLAYER_Y + 20){//начисляем очки игроку и перезапускаем мяч, если мяч прошел стену врага
             gameScreen.getPlayer().score();
+            if (Boot.volume){
+                gameScreen.lvlUp.play();
+            }
             reset();
             angle = getRandomAngle(new int[]{0, 22, 45, -22, -45});
         }

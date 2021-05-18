@@ -5,6 +5,8 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.samsung.game.Boot;
+import com.samsung.game.GameObjects.Paddles.PlayerPaddle;
 import com.samsung.game.Screens.GameScreen;
 
 public class GameCollision implements ContactListener {//класс который применяется в GameScreen для обработки коллизий
@@ -28,8 +30,16 @@ public class GameCollision implements ContactListener {//класс которы
         if(a.getUserData() == ContactType.BALL || b.getUserData() == ContactType.BALL){//если хотя бы один из прикоснувшихся - шар, то обрабатываем столкновение
             //коллизия игрока и пули
             if (a.getUserData() == ContactType.PLAYER || b.getUserData() == ContactType.PLAYER){
+                if (Boot.volume){
+                    gameScreen.beat.play();
+                }
                 gameScreen.getBall().reverseAngleY();
-                gameScreen.getBall().randomiseAngle(diapozoneP);
+                if (PlayerPaddle.paddleType == PaddleType.GREEN) {
+                    gameScreen.getBall().randomiseAngle(diapozoneP);
+                }
+                else {
+                    gameScreen.getBall().randomiseAngle(diapozoneE);
+                }
                 gameScreen.getBall().incSpeed();
             }
             //коллизия стены и пули
@@ -38,6 +48,9 @@ public class GameCollision implements ContactListener {//класс которы
             }
             //коллизия врага и пули, пока что едентична игроку и пуле, но в будущем может изменяться
             if (a.getUserData() == ContactType.ENEMY || b.getUserData() == ContactType.ENEMY){
+                if (Boot.volume){
+                    gameScreen.beat.play();
+                }
                 gameScreen.getBall().reverseAngleY();
                 gameScreen.getBall().randomiseAngle(diapozoneE);
                 gameScreen.getBall().incSpeed();

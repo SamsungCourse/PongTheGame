@@ -7,6 +7,7 @@ import com.samsung.game.HelperClasses.BodyCreator;
 import com.samsung.game.HelperClasses.ContactType;
 import com.samsung.game.Screens.GameScreen;
 
+import static com.samsung.game.HelperClasses.AdaptiveMaker.adaptiveHeight;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_HEIGHT;
 import static com.samsung.game.HelperClasses.Constants.WALL_WIDTH;
 
@@ -20,7 +21,7 @@ public class Wall {//стены по бокам
     public Wall(float x, GameScreen gameScreen){
         y = SCREEN_HEIGHT/2f;
         this.x = x;
-        height = SCREEN_HEIGHT - 512;
+        height = (int) (SCREEN_HEIGHT - adaptiveHeight(512));
         width = WALL_WIDTH;
 
         texture = new Texture("dot.png");

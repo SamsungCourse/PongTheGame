@@ -2,7 +2,10 @@ package com.samsung.game.Screens.Buttons;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.samsung.game.Boot;
+import com.samsung.game.HelperClasses.Constants;
 import com.samsung.game.Screens.GameScreen;
+
+import static com.samsung.game.HelperClasses.AdaptiveMaker.adaptiveHeight;
 
 public class ButtonHard extends AbstractButton {
 
@@ -21,8 +24,10 @@ public class ButtonHard extends AbstractButton {
         }
         else {
             if (toSetScreen){
-                gameScreen.getBall().speed = 40;
-                gameScreen.getEnemy().speed = 50;
+                if (Boot.volume){
+                    touch.play();
+                }
+                gameScreen.getEnemy().speed = 60;
                 boot.setScreen(gameScreen);
             }
         }

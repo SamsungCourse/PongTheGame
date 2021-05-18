@@ -13,6 +13,12 @@ public class ExitButton extends AbstractButton{
     }
     public void update(){
         if (isButtonTouched()){
+            if (toSoundPlay){
+                if (Boot.volume){
+                    touch.play();
+                }
+                toSoundPlay = false;
+            }
             toSetScreen = true;
         }
         else {

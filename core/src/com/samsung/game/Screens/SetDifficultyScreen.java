@@ -16,6 +16,7 @@ import com.samsung.game.Screens.Buttons.ButtonHard;
 import com.samsung.game.Screens.Buttons.ButtonNormal;
 import com.samsung.game.Screens.Buttons.ExitButton;
 
+import static com.samsung.game.HelperClasses.AdaptiveMaker.adaptiveHeight;
 import static com.samsung.game.HelperClasses.Constants.BUTTON_HEIGHT;
 import static com.samsung.game.HelperClasses.Constants.DIFFICULTY_BUTTON_Y;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_HEIGHT;
@@ -45,10 +46,10 @@ public class SetDifficultyScreen extends ScreenAdapter {
         buttonEasy = new ButtonEasy(SCREEN_WIDTH/2f, DIFFICULTY_BUTTON_Y, boot);
         buttonNormal = new ButtonNormal(SCREEN_WIDTH/2f, DIFFICULTY_BUTTON_Y - BUTTON_HEIGHT - 30, boot);
         buttonHard = new ButtonHard(SCREEN_WIDTH/2f, DIFFICULTY_BUTTON_Y - 2*BUTTON_HEIGHT - 60, boot);
-        exitButton = new ExitButton(SCREEN_WIDTH/2f, 700, boot);
+        exitButton = new ExitButton(SCREEN_WIDTH/2f, adaptiveHeight(700), boot);
     }
 
-    public void update(){
+    public void update() throws InterruptedException {
         world.step(1 / 60f, 6,2);
 
         camera.update();
@@ -63,7 +64,11 @@ public class SetDifficultyScreen extends ScreenAdapter {
     @Override
     public void render(float delta) {
         super.render(delta);
-        update();
+        try {
+            update();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
