@@ -35,19 +35,21 @@ public class GameCollision implements ContactListener {//класс которы
                     gameScreen.beat.play();
                 }
                 gameScreen.getBall().reverseAngleY();
-                if (PlayerPaddle.paddleType == PaddleType.GREEN) {
-                    gameScreen.getBall().randomiseAngle(diapozoneP);
+                if (UIPaddle.type == ScreenTypePaddle.GAME_SCREEN){
+                    if (PlayerPaddle.paddleType == PaddleType.GREEN) {
+                        gameScreen.getBall().randomiseAngle(diapozoneP);
+                    } else {
+                        gameScreen.getBall().randomiseAngle(diapozoneE);
+                    }
+                    if (PlayerPaddle.paddleType == PaddleType.BLUE) {
+                        gameScreen.getBall().incSpeedOnNumber(10);
+                    } else {
+                        gameScreen.getBall().incSpeed();
+                    }
                 }
-                else {
+                if (UIPaddle.type == ScreenTypePaddle.WALL_SCREEN) {
                     gameScreen.getBall().randomiseAngle(diapozoneE);
                 }
-                if (PlayerPaddle.paddleType == PaddleType.BLUE){
-                    gameScreen.getBall().incSpeedOnNumber(10);
-                }
-                else {
-                    gameScreen.getBall().incSpeed();
-                }
-                gameScreen.getBall().incSpeed();
             }
             //коллизия стены и пули
             if (a.getUserData() == ContactType.WALL || b.getUserData() == ContactType.WALL){
@@ -66,6 +68,7 @@ public class GameCollision implements ContactListener {//класс которы
                 if (UIPaddle.type == ScreenTypePaddle.GAME_SCREEN) {
                     gameScreen.getBall().reverseAngleY();
                     gameScreen.getBall().randomiseAngle(diapozoneE);
+                    gameScreen.getBall().incSpeed();
                 }
             }
         }

@@ -68,11 +68,11 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
 
         //все падлы
         if (UIPaddle.type == ScreenTypePaddle.GAME_SCREEN){
-            enemy = new UIPaddle(SCREEN_WIDTH / 2f, SCREEN_HEIGHT - PLAYER_Y, this);
+            enemy = new UIPaddle(SCREEN_WIDTH / 2f, SCREEN_HEIGHT - PLAYER_Y, this, boot);
         }
 
         if (UIPaddle.type == ScreenTypePaddle.WALL_SCREEN){
-            enemy = new UIPaddle(SCREEN_WIDTH / 2f, SCREEN_HEIGHT - adaptiveHeight(256) - adaptiveHeight(32), this);
+            enemy = new UIPaddle(SCREEN_WIDTH / 2f, SCREEN_HEIGHT - adaptiveHeight(256) - adaptiveHeight(32), this, boot);
         }
         numbers = loadTextureSprite("numbers.png", 10);
     }
