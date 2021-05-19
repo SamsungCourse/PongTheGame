@@ -104,16 +104,15 @@ public class Ball {//класс пули
             }
         }
 
-        if (angle > 360){
-            angle = 360 - angle;
-        }
-        if (angle < -360){
-            angle = 360 + angle;
-        }
-
-        if (body.getLinearVelocity().x == 0 && body.getLinearVelocity().y == 0){
+        if (body.getLinearVelocity().y != velY || body.getLinearVelocity().x != velX){
             reset();
             angle = getRandomAngle(new int[]{0, 45, -45, 135, -135});
+        }
+        if (body.getLinearVelocity().y < 3 && body.getLinearVelocity().y > -3){
+            randomiseAngle(45);
+        }
+        if (body.getLinearVelocity().x < 3 && body.getLinearVelocity().x > -3){
+            randomiseAngle(45);
         }
     }
 
