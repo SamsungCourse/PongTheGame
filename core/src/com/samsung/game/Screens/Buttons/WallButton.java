@@ -32,6 +32,7 @@ public class WallButton extends AbstractButton {
         }
         else {
             if (toSetScreen){
+                GameScreen.maxScore = 100;
                 UIPaddle.type = ScreenTypePaddle.WALL_SCREEN;
                 boot.setScreen(new GameScreen(boot));
             }

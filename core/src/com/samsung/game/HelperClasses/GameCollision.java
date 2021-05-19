@@ -42,7 +42,7 @@ public class GameCollision implements ContactListener {//класс которы
                         gameScreen.getBall().randomiseAngle(diapozoneE);
                     }
                     if (PlayerPaddle.paddleType == PaddleType.BLUE) {
-                        gameScreen.getBall().incSpeedOnNumber(10);
+                        gameScreen.getBall().incSpeed(10);
                     } else {
                         gameScreen.getBall().incSpeed();
                     }
@@ -61,6 +61,7 @@ public class GameCollision implements ContactListener {//класс которы
                     gameScreen.beat.play();
                 }
                 if (UIPaddle.type == ScreenTypePaddle.WALL_SCREEN) {
+                    gameScreen.getBall().incSpeed(5);
                     gameScreen.getPlayer().score();
                     gameScreen.getBall().reverseAngleY();
                     gameScreen.getBall().randomiseAngle(diapozoneE);

@@ -28,8 +28,9 @@ public class ButtonHard extends AbstractButton {
                 if (Boot.volume){
                     touch.play();
                 }
+                GameScreen.maxScore = 30;
                 Ball.incSpeed = 8;
-                gameScreen.getEnemy().speed = 60;
+                gameScreen.getEnemy().speed = 50;
                 boot.setScreen(gameScreen);
             }
         }

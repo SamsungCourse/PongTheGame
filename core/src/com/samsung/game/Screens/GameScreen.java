@@ -46,6 +46,7 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
     private UIPaddle enemy;
     public Sound beat = Gdx.audio.newSound(Gdx.files.internal("sounds/touch.mp3"));
     public Sound lvlUp = Gdx.audio.newSound(Gdx.files.internal("sounds/upper_beat.mp3"));
+    public static int maxScore;
 
     private TextureRegion[] numbers;
 
@@ -109,6 +110,9 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
         player.update();
         ball.update();
 
+        if (player.getScore() >= maxScore||enemy.getScore() >= maxScore){
+            boot.setScreen(new GameOverScreen(this, boot));
+        }
         batch.setProjectionMatrix(camera.combined);
     }
 
@@ -137,9 +141,13 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
         rightWall.render(batch);
         leftWall.render(batch);
 
-        drawNumbers(batch, player.getScore(), SCREEN_WIDTH / 2f - SCORE_SPACE - NUMBERS_WIDTH/2f,  SCREEN_HEIGHT / 2f - NUMBERS_HEIGHT/2f, NUMBERS_WIDTH, NUMBERS_HEIGHT);
-        drawNumbers(batch, enemy.getScore(), SCREEN_WIDTH / 2f + SCORE_SPACE - NUMBERS_WIDTH/2f, SCREEN_HEIGHT / 2f - NUMBERS_HEIGHT/2f, NUMBERS_WIDTH, NUMBERS_HEIGHT);
-
+        if(UIPaddle.type == ScreenTypePaddle.GAME_SCREEN){
+            drawNumbers(batch, player.getScore(), SCREEN_WIDTH / 2f - SCORE_SPACE - NUMBERS_WIDTH / 2f, SCREEN_HEIGHT / 2f - NUMBERS_HEIGHT / 2f, NUMBERS_WIDTH, NUMBERS_HEIGHT);
+            drawNumbers(batch, enemy.getScore(), SCREEN_WIDTH / 2f + SCORE_SPACE - NUMBERS_WIDTH / 2f, SCREEN_HEIGHT / 2f - NUMBERS_HEIGHT / 2f, NUMBERS_WIDTH, NUMBERS_HEIGHT);
+        }
+        if (UIPaddle.type == ScreenTypePaddle.WALL_SCREEN){
+            drawNumbers(batch, player.getScore(), SCREEN_WIDTH / 2f - NUMBERS_WIDTH / 2f, SCREEN_HEIGHT / 2f - NUMBERS_HEIGHT / 2f, NUMBERS_WIDTH, NUMBERS_HEIGHT);
+        }
         batch.end();
     }
 }

@@ -28,8 +28,9 @@ public class ButtonNormal extends AbstractButton {
                 if (Boot.volume){
                     touch.play();
                 }
+                GameScreen.maxScore = 20;
                 Ball.incSpeed = 6;
-                gameScreen.getEnemy().speed = 50;
+                gameScreen.getEnemy().speed = 40;
                 boot.setScreen(gameScreen);
             }
         }

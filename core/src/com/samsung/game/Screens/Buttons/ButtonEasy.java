@@ -28,6 +28,7 @@ public class ButtonEasy extends AbstractButton {
                 if (Boot.volume){
                     touch.play();
                 }
+                GameScreen.maxScore = 10;
                 Ball.incSpeed = 4;
                 gameScreen.getEnemy().speed = 30;
                 boot.setScreen(gameScreen);

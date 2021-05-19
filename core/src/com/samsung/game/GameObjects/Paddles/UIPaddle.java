@@ -9,6 +9,8 @@ import com.samsung.game.HelperClasses.ScreenTypePaddle;
 import com.samsung.game.Screens.GameScreen;
 import com.samsung.game.Screens.SetupScreen;
 
+import static com.samsung.game.HelperClasses.AdaptiveMaker.adaptiveHeight;
+import static com.samsung.game.HelperClasses.AdaptiveMaker.adaptiveWidth;
 import static com.samsung.game.HelperClasses.Constants.PIXELS_PER_METRE;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_HEIGHT;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_WIDTH;
@@ -27,7 +29,7 @@ public class UIPaddle extends AbstractPaddle {
         this.boot = boot;
         if (type == ScreenTypePaddle.WALL_SCREEN){
             this.width = SCREEN_WIDTH - WALL_WIDTH*2;
-            this.height = (int) AdaptiveMaker.adaptiveHeight(64);
+            this.height = (int) adaptiveHeight(64);
             this.y = y - height/2f;
         }
         texture = new Texture("dot.png");
@@ -41,13 +43,9 @@ public class UIPaddle extends AbstractPaddle {
             move();
         }
         if (type == ScreenTypePaddle.WALL_SCREEN){
-            this.gameScreen.getBall().speed = 40;
-            if(body.getPosition().y*PIXELS_PER_METRE > SCREEN_HEIGHT - 800){
-                System.out.println(body.getPosition().y*PIXELS_PER_METRE + "  " + (SCREEN_HEIGHT - 800));
-                velY = -0.5f;
-            }
-            else{
-                boot.setScreen(new SetupScreen(boot));
+            this.gameScreen.getBall().speed = adaptiveWidth((int) adaptiveHeight(50));
+            if(body.getPosition().y*PIXELS_PER_METRE > SCREEN_HEIGHT - adaptiveHeight(1000)){
+                velY = -0.1f;
             }
             body.setLinearVelocity(0, velY);
             velY = 0;
