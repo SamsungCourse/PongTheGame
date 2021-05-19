@@ -13,8 +13,8 @@ import com.samsung.game.Screens.GameScreen;
 public class GameCollision implements ContactListener {//класс который применяется в GameScreen для обработки коллизий
 
     private GameScreen gameScreen;
-    public static int diapozoneP = 45;
-    public static int diapozoneE = 22;
+    public static int diapozoneP = 90;
+    public static int diapozoneE = 45;
 
     public GameCollision(GameScreen gameScreen){
         this.gameScreen = gameScreen;
@@ -42,12 +42,13 @@ public class GameCollision implements ContactListener {//класс которы
                         gameScreen.getBall().randomiseAngle(diapozoneE);
                     }
                     if (PlayerPaddle.paddleType == PaddleType.BLUE) {
-                        gameScreen.getBall().incSpeed(10);
+                        gameScreen.getBall().incSpeed(15);
                     } else {
                         gameScreen.getBall().incSpeed();
                     }
                 }
                 if (UIPaddle.type == ScreenTypePaddle.WALL_SCREEN) {
+                    gameScreen.getBall().incSpeed(10);
                     gameScreen.getBall().randomiseAngle(diapozoneE);
                 }
             }
@@ -61,7 +62,7 @@ public class GameCollision implements ContactListener {//класс которы
                     gameScreen.beat.play();
                 }
                 if (UIPaddle.type == ScreenTypePaddle.WALL_SCREEN) {
-                    gameScreen.getBall().incSpeed(5);
+                    gameScreen.getBall().incSpeed(10);
                     gameScreen.getPlayer().score();
                     gameScreen.getBall().reverseAngleY();
                     gameScreen.getBall().randomiseAngle(diapozoneE);
