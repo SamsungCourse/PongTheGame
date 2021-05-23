@@ -31,11 +31,12 @@ public class Ball {//класс пули
     public int angle;
     public static int incSpeed = 5;
     private Boot boot;
+    public static int SPEED = 26;
 
     public Ball(GameScreen gameScreen, Boot boot) {
         x = SCREEN_WIDTH / 2f;
         y = SCREEN_HEIGHT / 2f;
-        speed = BALL_SPEED;
+        speed = SPEED;
         angle = getRandomAngle(new int[]{0, 45, -45, 135, -135});
         this.boot = boot;
 
@@ -50,14 +51,17 @@ public class Ball {//класс пули
         return arr[(int) (Math.random()*(arr.length - 1))];
     }
 
-    public void randomiseAngle(int diap){//дает рандомное изменение угла от -22 до +22, придает игре неожиданностей
+    public void randomiseAngle(int diap){
         int num = (int) (Math.random()*diap - diap/2);
-        System.out.println("nuuuum" + num);
-        angle += num;
+
+        if (angle + num < -45 && angle + num > -135 || angle + num > 45 && angle + num < 135){
+            randomiseAngle(diap);
+        }
+        else angle += num;
     }
 
-    public void reverseAngleY(){//непростой математикой отражает угол в направлении Y, является упрощением от angle = angle - 2*angle + 180;
-        angle = 180 - angle;
+    public void reverseAngleY(){
+        angle = angle < 0 ? - (360 - (180 - angle)) : 180 - angle;
     }
 
     public void reverseAngleX(){//простой математикой отражает угол в направлении X, пользуюсь тем, что значения синуса после 180 равны тем что до 180 но со знаком -
@@ -104,20 +108,18 @@ public class Ball {//класс пули
             }
         }
 
-        if (body.getLinearVelocity().y != velY || body.getLinearVelocity().x != velX){
+        if (body.getLinearVelocity().y == 0 || body.getLinearVelocity().x == 0){
             reset();
             angle = getRandomAngle(new int[]{0, 45, -45, 135, -135});
         }
-        if (body.getLinearVelocity().y < 3 && body.getLinearVelocity().y > -3){
-            randomiseAngle(45);
-        }
-        if (body.getLinearVelocity().x < 3 && body.getLinearVelocity().x > -3){
-            randomiseAngle(45);
+        if (body.getLinearVelocity().y < 2 && body.getLinearVelocity().y > -3){
+            reset();
+            angle = getRandomAngle(new int[]{0, 45, -45});
         }
     }
 
     public void reset(){
-        speed = BALL_SPEED;
+        speed = SPEED;
         body.setTransform(SCREEN_WIDTH/2f/PIXELS_PER_METRE, SCREEN_HEIGHT/2f/PIXELS_PER_METRE, 0);
     }
 

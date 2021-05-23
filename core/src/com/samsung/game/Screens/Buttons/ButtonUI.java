@@ -18,8 +18,8 @@ public class ButtonUI extends AbstractButton{
         width = (int) adaptiveWidth(1100);
         this.x = x - width/2f;
         this.y = y - height/2f;
-        textureUp = new Texture("buttons/setup/UIButtonU.png");
-        textureDown = new Texture("buttons/setup/UIButtonD.png");
+        textureUp = new Texture("buttons/setup/En/UIButtonU.png");
+        textureDown = new Texture("buttons/setup/En/UIButtonD.png");
     }
 
     public void update(){

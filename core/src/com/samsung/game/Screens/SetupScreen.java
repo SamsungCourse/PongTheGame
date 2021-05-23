@@ -38,10 +38,10 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
         background = new Texture("backgrounds/introBg.png");
         batch = new SpriteBatch();
         world = new World(new Vector2(0,0), false);
-        buttonUI = new ButtonUI(SCREEN_WIDTH/2f, adaptiveHeight(1500), boot);
-        paddleButton = new PaddleChangeButton(SCREEN_WIDTH/2f, adaptiveHeight(700), boot);
-        settingsButton = new SettingsButton(SCREEN_WIDTH/2f, adaptiveHeight(300), boot);
-        wallButton = new WallButton(SCREEN_WIDTH/2f, adaptiveHeight(1100), boot);
+        buttonUI = new ButtonUI(SCREEN_WIDTH/2f, adaptiveHeight(1700), boot);
+        paddleButton = new PaddleChangeButton(SCREEN_WIDTH/2f, adaptiveHeight(900), boot);
+        settingsButton = new SettingsButton(SCREEN_WIDTH/2f, adaptiveHeight(500), boot);
+        wallButton = new WallButton(SCREEN_WIDTH/2f, adaptiveHeight(1300), boot);
 
     }
 

@@ -17,7 +17,9 @@ import com.samsung.game.GameObjects.Paddles.UIPaddle;
 import com.samsung.game.GameObjects.Paddles.PlayerPaddle;
 import com.samsung.game.GameObjects.Wall;
 import com.samsung.game.HelperClasses.GameCollision;
+import com.samsung.game.HelperClasses.GameDifficulty;
 import com.samsung.game.HelperClasses.ScreenTypePaddle;
+import com.samsung.game.Screens.Buttons.ExitButton;
 
 import static com.samsung.game.HelperClasses.AdaptiveMaker.adaptiveHeight;
 import static com.samsung.game.HelperClasses.Constants.NUMBERS_HEIGHT;
@@ -38,6 +40,8 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
     private World world;
     private GameCollision gameCollision;
     private Boot boot;
+    private ExitButton exitButton;
+    public static GameDifficulty gameDifficulty = GameDifficulty.EASY;
 
     //игровые обьекты
     public PlayerPaddle player;
@@ -66,6 +70,7 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
         ball = new Ball(this, boot);
         leftWall = new Wall(WALL_WIDTH/2f, this);
         rightWall = new Wall(SCREEN_WIDTH - WALL_WIDTH/2f, this);
+        exitButton = new ExitButton(SCREEN_WIDTH/2f, SCREEN_HEIGHT - adaptiveHeight(128), boot);
 
         //все падлы
         if (UIPaddle.type == ScreenTypePaddle.GAME_SCREEN){
@@ -109,6 +114,7 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
         enemy.update();
         player.update();
         ball.update();
+        exitButton.update();
 
         if (player.getScore() >= maxScore||enemy.getScore() >= maxScore){
             boot.setScreen(new GameOverScreen(this, boot));
@@ -140,6 +146,7 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
         ball.render(batch);
         rightWall.render(batch);
         leftWall.render(batch);
+        exitButton.render(batch);
 
         if(UIPaddle.type == ScreenTypePaddle.GAME_SCREEN){
             drawNumbers(batch, player.getScore(), SCREEN_WIDTH / 2f - SCORE_SPACE - NUMBERS_WIDTH / 2f, SCREEN_HEIGHT / 2f - NUMBERS_HEIGHT / 2f, NUMBERS_WIDTH, NUMBERS_HEIGHT);

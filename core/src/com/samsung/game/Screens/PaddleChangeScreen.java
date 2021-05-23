@@ -45,7 +45,7 @@ public class PaddleChangeScreen extends ScreenAdapter {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
         camera.position.set(new Vector3(SCREEN_WIDTH/2f, SCREEN_HEIGHT/2f, 0));
-        background = new Texture("backgrounds/paddleBg.png");
+        background = new Texture("backgrounds/En/paddleBg.png");
         batch = new SpriteBatch();
         world = new World(new Vector2(0,0), false);
         gameScreen = new GameScreen(boot);
@@ -61,31 +61,31 @@ public class PaddleChangeScreen extends ScreenAdapter {
         world.step(1 / 60f, 6,2);
         if (redPaddleButton.isButtonTouched()){
             PlayerPaddle.paddleType = PaddleType.RED;
-            redPaddleButton.isTouched = true;
-            bluePaddleButton.isTouched = false;
-            greenPaddleButton.isTouched = false;
-            paddleButton.isTouched = false;
+            RedPaddleButton.isTouched = true;
+            BluePaddleButton.isTouched = false;
+            GreenPaddleButton.isTouched = false;
+            PaddleButton.isTouched = false;
         }
         if (bluePaddleButton.isButtonTouched()){
             PlayerPaddle.paddleType = PaddleType.BLUE;
-            bluePaddleButton.isTouched = true;
-            redPaddleButton.isTouched = false;
-            greenPaddleButton.isTouched = false;
-            paddleButton.isTouched = false;
+            BluePaddleButton.isTouched = true;
+            RedPaddleButton.isTouched = false;
+            GreenPaddleButton.isTouched = false;
+            PaddleButton.isTouched = false;
         }
         if (paddleButton.isButtonTouched()){
             PlayerPaddle.paddleType = PaddleType.WHITE;
-            paddleButton.isTouched = true;
-            bluePaddleButton.isTouched = false;
-            redPaddleButton.isTouched = false;
-            greenPaddleButton.isTouched = false;
+            PaddleButton.isTouched = true;
+            BluePaddleButton.isTouched = false;
+            RedPaddleButton.isTouched = false;
+            GreenPaddleButton.isTouched = false;
         }
         if (greenPaddleButton.isButtonTouched()) {
             PlayerPaddle.paddleType = PaddleType.GREEN;
-            greenPaddleButton.isTouched = true;
-            paddleButton.isTouched = false;
-            bluePaddleButton.isTouched = false;
-            redPaddleButton.isTouched = false;
+            GreenPaddleButton.isTouched = true;
+            PaddleButton.isTouched = false;
+            BluePaddleButton.isTouched = false;
+            RedPaddleButton.isTouched = false;
         }
         camera.update();
         exitButton.update();

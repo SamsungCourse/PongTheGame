@@ -19,8 +19,8 @@ public class SettingsButton extends AbstractButton{
         width = (int) adaptiveWidth(1100);
         this.x = x - width/2f;
         this.y = y - height/2f;
-        textureUp = new Texture("buttons/setup/settingsBtn.png");
-        textureDown = new Texture("buttons/setup/settingsBtnU.png");
+        textureUp = new Texture("buttons/setup/En/settingsBtnU.png");
+        textureDown = new Texture("buttons/setup/En/settingsBtnU.png");
     }
     public void update(){
         if (isButtonTouched()){

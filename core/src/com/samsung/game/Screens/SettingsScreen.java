@@ -29,7 +29,7 @@ public class SettingsScreen extends ScreenAdapter {
     public SettingsScreen(Boot boot){
         camera = new OrthographicCamera();
         camera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
-        background = new Texture("backgrounds/settingsBg.png");
+        background = new Texture("backgrounds/En/settingsBg.png");
         batch = new SpriteBatch();
         world = new World(new Vector2(0,0), false);
         acceleratorButton = new AcceleratorButton(SCREEN_WIDTH/2f, adaptiveHeight(1000));

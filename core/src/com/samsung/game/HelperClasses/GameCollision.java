@@ -35,42 +35,32 @@ public class GameCollision implements ContactListener {//класс которы
                     gameScreen.beat.play();
                 }
                 gameScreen.getBall().reverseAngleY();
-                if (UIPaddle.type == ScreenTypePaddle.GAME_SCREEN){
-                    if (PlayerPaddle.paddleType == PaddleType.GREEN) {
-                        gameScreen.getBall().randomiseAngle(diapozoneP);
-                    } else {
-                        gameScreen.getBall().randomiseAngle(diapozoneE);
-                    }
-                    if (PlayerPaddle.paddleType == PaddleType.BLUE) {
-                        gameScreen.getBall().incSpeed(15);
-                    } else {
-                        gameScreen.getBall().incSpeed();
-                    }
-                }
-                if (UIPaddle.type == ScreenTypePaddle.WALL_SCREEN) {
-                    gameScreen.getBall().incSpeed(10);
+                if (PlayerPaddle.paddleType == PaddleType.GREEN) {
+                    gameScreen.getBall().randomiseAngle(diapozoneP);
+                } else {
                     gameScreen.getBall().randomiseAngle(diapozoneE);
                 }
+                if (PlayerPaddle.paddleType == PaddleType.BLUE) {
+                    gameScreen.getBall().incSpeed(12);
+                } else {
+                    gameScreen.getBall().incSpeed();
+                }
+
             }
             //коллизия стены и пули
             if (a.getUserData() == ContactType.WALL || b.getUserData() == ContactType.WALL){
                 gameScreen.getBall().reverseAngleX();
             }
-            //коллизия врага и пули, пока что едентична игроку и пуле, но в будущем может изменяться
+
             if (a.getUserData() == ContactType.ENEMY || b.getUserData() == ContactType.ENEMY){
                 if (Boot.volume){
                     gameScreen.beat.play();
                 }
-                if (UIPaddle.type == ScreenTypePaddle.WALL_SCREEN) {
-                    gameScreen.getBall().incSpeed(10);
+                gameScreen.getBall().reverseAngleY();
+                gameScreen.getBall().randomiseAngle(diapozoneE);
+                gameScreen.getBall().incSpeed();
+                if (UIPaddle.type == ScreenTypePaddle.WALL_SCREEN){
                     gameScreen.getPlayer().score();
-                    gameScreen.getBall().reverseAngleY();
-                    gameScreen.getBall().randomiseAngle(diapozoneE);
-                }
-                if (UIPaddle.type == ScreenTypePaddle.GAME_SCREEN) {
-                    gameScreen.getBall().reverseAngleY();
-                    gameScreen.getBall().randomiseAngle(diapozoneE);
-                    gameScreen.getBall().incSpeed();
                 }
             }
         }

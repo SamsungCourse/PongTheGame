@@ -24,5 +24,5 @@ public class Constants {//все инты хранятся здесь
     public static final int BUTTON_HEIGHT = (int) adaptiveHeight(200);
     public static final int BUTTON_WIDTH = (int) adaptiveWidth(800);
     public static final int PADDLE_BUTTON_Y = (int) adaptiveHeight(1700);
-    public static final int DIFFICULTY_BUTTON_Y = (int) adaptiveHeight(1600);
+    public static final int DIFFICULTY_BUTTON_Y = (int) adaptiveHeight(1540);
 }

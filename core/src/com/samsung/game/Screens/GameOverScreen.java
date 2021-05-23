@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.samsung.game.Boot;
+import com.samsung.game.HelperClasses.GameDifficulty;
 import com.samsung.game.Screens.Buttons.AcceleratorButton;
 import com.samsung.game.Screens.Buttons.ExitButton;
 import com.samsung.game.Screens.Buttons.VolumeButton;
@@ -29,6 +30,7 @@ public class GameOverScreen extends ScreenAdapter {
     private SpriteBatch batch;
     private ExitButton exitButton;
     private int score;
+    private short mlt = 1;
 
     private World world;
 
@@ -38,7 +40,7 @@ public class GameOverScreen extends ScreenAdapter {
 
     public GameOverScreen(GameScreen gameScreen, Boot boot){
         this.gameScreen = gameScreen;
-        background = new Texture("backgrounds/game_over.png");
+        background = new Texture("backgrounds/En/game_over.png");
         camera = new OrthographicCamera();
         camera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
         batch = new SpriteBatch();
@@ -47,7 +49,11 @@ public class GameOverScreen extends ScreenAdapter {
         exitButton = new ExitButton(SCREEN_WIDTH/2f, adaptiveHeight(600), boot);
         numbers = loadTextureSprite("numbers.png", 10);
 
-        score = Math.max(gameScreen.getPlayer().getScore() - gameScreen.getEnemy().getScore(), 0);
+        if (GameScreen.gameDifficulty == GameDifficulty.EASY) mlt = 1;
+        if (GameScreen.gameDifficulty == GameDifficulty.NORMAL) mlt = 2;
+        if (GameScreen.gameDifficulty == GameDifficulty.HARD) mlt = 3;
+
+        score = Math.max(gameScreen.getPlayer().getScore() - gameScreen.getEnemy().getScore(), 0) * mlt;
     }
 
     private TextureRegion[] loadTextureSprite(String filename, int columns){

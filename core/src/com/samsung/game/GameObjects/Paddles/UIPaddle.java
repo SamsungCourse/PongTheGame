@@ -22,6 +22,7 @@ public class UIPaddle extends AbstractPaddle {
     public int speed;
     private float velY;
     private Boot boot;
+    public static int angle = 180;
 
     public UIPaddle(float x, float y, GameScreen gameScreen, Boot boot) {
         super(x, y, gameScreen);
@@ -33,7 +34,7 @@ public class UIPaddle extends AbstractPaddle {
             this.y = y - height/2f;
         }
         texture = new Texture("dot.png");
-        body = BodyCreator.createBody(x, y, width, height,false,1000000, gameScreen.getWorld(), ContactType.ENEMY);
+        body = BodyCreator.createBody(x, y, width, height, false, 1000000, gameScreen.getWorld(), ContactType.ENEMY);
     }
 
     @Override
@@ -43,9 +44,8 @@ public class UIPaddle extends AbstractPaddle {
             move();
         }
         if (type == ScreenTypePaddle.WALL_SCREEN){
-            this.gameScreen.getBall().speed = adaptiveWidth((int) adaptiveHeight(50));
             if(body.getPosition().y*PIXELS_PER_METRE > SCREEN_HEIGHT - adaptiveHeight(1000)){
-                velY = -0.1f;
+                velY = -0.2f;
             }
             body.setLinearVelocity(0, velY);
             velY = 0;

@@ -14,7 +14,6 @@ public class AbstractButtonBox {
     protected Texture textureTouched;
     protected float x, y;
     protected int width, height;
-    public boolean isTouched = false;
 
 
     public AbstractButtonBox(float x, float y) {
@@ -24,14 +23,6 @@ public class AbstractButtonBox {
         this.y = y - height/2f;
     }
 
-    public void render(SpriteBatch batch) {
-        if (isTouched){
-            batch.draw(textureTouched, x, y, width, height);
-        }
-        if (!isTouched){
-            batch.draw(textureUntouched, x, y, width, height);
-        }
-    }
     public Boolean isButtonTouched(){
         if (Gdx.input.isTouched()){
             float touchPosX = Gdx.input.getX();

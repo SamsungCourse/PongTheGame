@@ -40,7 +40,7 @@ public class SetDifficultyScreen extends ScreenAdapter {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
         camera.position.set(new Vector3(SCREEN_WIDTH/2f, SCREEN_HEIGHT/2f, 0));
-        background = new Texture("backgrounds/difficultyBg.png");
+        background = new Texture("backgrounds/En/difficultyBg.png");
         batch = new SpriteBatch();
         world = new World(new Vector2(0,0), false);
         buttonEasy = new ButtonEasy(SCREEN_WIDTH/2f, DIFFICULTY_BUTTON_Y, boot);

@@ -16,6 +16,7 @@ public class PlayerPaddle extends AbstractPaddle {
 
     public static PaddleType paddleType = PaddleType.WHITE;
     public static boolean isAccelerationMove = false;
+    public static int angle = 0;
 
     public PlayerPaddle(float x, float y, GameScreen gameScreen) {
         super(x, y, gameScreen);
