@@ -11,6 +11,7 @@ import static com.samsung.game.HelperClasses.Constants.SCREEN_WIDTH;
 public class Boot extends Game {//игровой класс, который запускается первым, вызывая остальные экраны, также он передает GameScreen камеру, поэтому если будешь менять, не забудь про нее
 
 	public static boolean volume = true;
+	public static boolean eng = false;
 
 	@Override
 	public void create () {

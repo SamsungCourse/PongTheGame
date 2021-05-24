@@ -35,9 +35,9 @@ public class ButtonEasy extends AbstractButton {
                 UIPaddle.type = ScreenTypePaddle.GAME_SCREEN;
                 gameScreen = new GameScreen(boot);
                 GameScreen.maxScore = 10;
-                Ball.incSpeed = 4;
-                Ball.SPEED = (int) adaptiveWidth((int) adaptiveHeight(26));
-                gameScreen.getEnemy().speed = 25;
+                Ball.incSpeed = (int) adaptiveWidth((int) adaptiveHeight(22));
+                Ball.SPEED = (int) adaptiveWidth((int) adaptiveHeight(38));
+                gameScreen.getEnemy().speed = (int) adaptiveWidth(26);;
                 GameScreen.gameDifficulty = GameDifficulty.EASY;
                 boot.setScreen(gameScreen);
             }

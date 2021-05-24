@@ -12,10 +12,12 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.samsung.game.Boot;
 import com.samsung.game.Screens.Buttons.ButtonUI;
 import com.samsung.game.Screens.Buttons.PaddleChangeButton;
+import com.samsung.game.Screens.Buttons.RatingButton;
 import com.samsung.game.Screens.Buttons.SettingsButton;
 import com.samsung.game.Screens.Buttons.WallButton;
 
 import static com.samsung.game.HelperClasses.AdaptiveMaker.adaptiveHeight;
+import static com.samsung.game.HelperClasses.AdaptiveMaker.adaptiveWidth;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_HEIGHT;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_WIDTH;
 
@@ -30,6 +32,7 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
     private SettingsButton settingsButton;
     private WallButton wallButton;
     private World world;
+    private RatingButton ratingButton;
 
 
     public SetupScreen(Boot boot){
@@ -39,10 +42,10 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
         batch = new SpriteBatch();
         world = new World(new Vector2(0,0), false);
         buttonUI = new ButtonUI(SCREEN_WIDTH/2f, adaptiveHeight(1700), boot);
-        paddleButton = new PaddleChangeButton(SCREEN_WIDTH/2f, adaptiveHeight(900), boot);
+        paddleButton = new PaddleChangeButton(SCREEN_WIDTH/2f + adaptiveWidth(285), adaptiveHeight(900), boot);
+        ratingButton = new RatingButton(SCREEN_WIDTH/2f - adaptiveWidth(285), 900, boot);
         settingsButton = new SettingsButton(SCREEN_WIDTH/2f, adaptiveHeight(500), boot);
         wallButton = new WallButton(SCREEN_WIDTH/2f, adaptiveHeight(1300), boot);
-
     }
 
     public void update(){
@@ -53,6 +56,7 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
         paddleButton.update();
         settingsButton.update();
         wallButton.update();
+        ratingButton.update();
         batch.setProjectionMatrix(camera.combined);
     }
 
@@ -69,6 +73,7 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
         paddleButton.render(batch);
         settingsButton.render(batch);
         wallButton.render(batch);
+        ratingButton.render(batch);
         batch.end();
     }
 }

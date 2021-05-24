@@ -38,8 +38,8 @@ public class WallButton extends AbstractButton {
                 UIPaddle.type = ScreenTypePaddle.WALL_SCREEN;
                 GameScreen.gameDifficulty = GameDifficulty.EASY;
                 GameScreen gameScreen = new GameScreen(boot);
-                Ball.SPEED = (int) adaptiveWidth((int) adaptiveHeight(52));
-                Ball.incSpeed = 3;
+                Ball.SPEED = (int) adaptiveWidth((int) adaptiveHeight(48));
+                Ball.incSpeed = 2;
                 boot.setScreen(gameScreen);
             }
         }

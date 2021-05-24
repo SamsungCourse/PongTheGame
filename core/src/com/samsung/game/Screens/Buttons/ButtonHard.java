@@ -34,9 +34,9 @@ public class ButtonHard extends AbstractButton {
                 UIPaddle.type = ScreenTypePaddle.GAME_SCREEN;
                 gameScreen = new GameScreen(boot);
                 GameScreen.maxScore = 10;
-                Ball.incSpeed = 8;
+                Ball.incSpeed = (int) adaptiveWidth((int) adaptiveHeight(22));
                 Ball.SPEED = (int) adaptiveWidth((int) adaptiveHeight(48));
-                gameScreen.getEnemy().speed = 40;
+                gameScreen.getEnemy().speed = (int) adaptiveWidth(46);
                 GameScreen.gameDifficulty = GameDifficulty.HARD;
                 boot.setScreen(gameScreen);
             }

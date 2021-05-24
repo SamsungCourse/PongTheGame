@@ -78,7 +78,7 @@ public class GameScreen extends ScreenAdapter {//игровой экран, вы
         }
 
         if (UIPaddle.type == ScreenTypePaddle.WALL_SCREEN){
-            enemy = new UIPaddle(SCREEN_WIDTH / 2f, SCREEN_HEIGHT - adaptiveHeight(256) - adaptiveHeight(32), this, boot);
+            enemy = new UIPaddle(SCREEN_WIDTH / 2f, SCREEN_HEIGHT - adaptiveHeight(289) - adaptiveHeight(32), this, boot);
         }
         numbers = loadTextureSprite("numbers.png", 10);
     }

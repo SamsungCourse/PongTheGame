@@ -10,6 +10,9 @@ import com.samsung.game.GameObjects.Paddles.PlayerPaddle;
 import com.samsung.game.GameObjects.Paddles.UIPaddle;
 import com.samsung.game.Screens.GameScreen;
 
+import static com.samsung.game.HelperClasses.AdaptiveMaker.adaptiveHeight;
+import static com.samsung.game.HelperClasses.AdaptiveMaker.adaptiveWidth;
+
 public class GameCollision implements ContactListener {//класс который применяется в GameScreen для обработки коллизий
 
     private GameScreen gameScreen;
@@ -35,16 +38,15 @@ public class GameCollision implements ContactListener {//класс которы
                     gameScreen.beat.play();
                 }
                 gameScreen.getBall().reverseAngleY();
-                if (PlayerPaddle.paddleType == PaddleType.GREEN) {
-                    gameScreen.getBall().randomiseAngle(diapozoneP);
-                } else {
+                if (PlayerPaddle.paddleType != PaddleType.GREEN) {
                     gameScreen.getBall().randomiseAngle(diapozoneE);
                 }
                 if (PlayerPaddle.paddleType == PaddleType.BLUE) {
-                    gameScreen.getBall().incSpeed(12);
-                } else {
-                    gameScreen.getBall().incSpeed();
+                    gameScreen.getBall().incSpeed((int) adaptiveWidth((int) adaptiveHeight(32)));
+                } else if (PlayerPaddle.paddleType == PaddleType.GREEN){
+                    gameScreen.getBall().incSpeed((int) adaptiveWidth((int) adaptiveHeight(12)));
                 }
+                else gameScreen.getBall().incSpeed();
 
             }
             //коллизия стены и пули

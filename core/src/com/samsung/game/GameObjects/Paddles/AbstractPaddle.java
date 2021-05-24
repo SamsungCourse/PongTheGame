@@ -23,11 +23,9 @@ public abstract class AbstractPaddle {//это ракетка всех раке�
     protected int width, height, score;
     protected Texture texture;
     protected GameScreen gameScreen;
-    protected ContactType contactType;
     protected boolean available = Gdx.input.isPeripheralAvailable(Input.Peripheral.Accelerometer);
 
     public AbstractPaddle(float x, float y, GameScreen gameScreen){
-        contactType = ContactType.PLAYER;
         this.x = x;
         this.y = y;
         this.gameScreen = gameScreen;
