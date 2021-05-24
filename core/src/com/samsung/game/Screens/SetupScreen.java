@@ -43,7 +43,7 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
         world = new World(new Vector2(0,0), false);
         buttonUI = new ButtonUI(SCREEN_WIDTH/2f, adaptiveHeight(1700), boot);
         paddleButton = new PaddleChangeButton(SCREEN_WIDTH/2f + adaptiveWidth(285), adaptiveHeight(900), boot);
-        ratingButton = new RatingButton(SCREEN_WIDTH/2f - adaptiveWidth(285), 900, boot);
+        ratingButton = new RatingButton(SCREEN_WIDTH/2f - adaptiveWidth(285), adaptiveHeight(900), boot);
         settingsButton = new SettingsButton(SCREEN_WIDTH/2f, adaptiveHeight(500), boot);
         wallButton = new WallButton(SCREEN_WIDTH/2f, adaptiveHeight(1300), boot);
     }
