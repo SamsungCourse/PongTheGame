@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.samsung.game.Boot;
 import com.samsung.game.Screens.Buttons.ButtonUI;
+import com.samsung.game.Screens.Buttons.LanguageButton;
 import com.samsung.game.Screens.Buttons.PaddleChangeButton;
 import com.samsung.game.Screens.Buttons.RatingButton;
 import com.samsung.game.Screens.Buttons.SettingsButton;
@@ -33,6 +34,7 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
     private WallButton wallButton;
     private World world;
     private RatingButton ratingButton;
+    private LanguageButton languageButton;
 
 
     public SetupScreen(Boot boot){
@@ -46,9 +48,10 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
         ratingButton = new RatingButton(SCREEN_WIDTH/2f - adaptiveWidth(285), adaptiveHeight(900), boot);
         settingsButton = new SettingsButton(SCREEN_WIDTH/2f, adaptiveHeight(500), boot);
         wallButton = new WallButton(SCREEN_WIDTH/2f, adaptiveHeight(1300), boot);
+        languageButton = new LanguageButton(SCREEN_WIDTH - adaptiveWidth(253), SCREEN_HEIGHT - adaptiveHeight(128));
     }
 
-    public void update(){
+    public void update() throws InterruptedException {
         world.step(1 / 60f, 6,2);
 
         camera.update();
@@ -57,12 +60,18 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
         settingsButton.update();
         wallButton.update();
         ratingButton.update();
+        languageButton.update();
+
         batch.setProjectionMatrix(camera.combined);
     }
 
     @Override
     public void render(float delta){
-        update();
+        try {
+            update();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         Gdx.gl.glClearColor(0,0,0,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -74,6 +83,7 @@ public class SetupScreen extends ScreenAdapter {//класс стартовог�
         settingsButton.render(batch);
         wallButton.render(batch);
         ratingButton.render(batch);
+        languageButton.render(batch);
         batch.end();
     }
 }

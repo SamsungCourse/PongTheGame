@@ -40,7 +40,12 @@ public class GameOverScreen extends ScreenAdapter {
 
     public GameOverScreen(GameScreen gameScreen, Boot boot){
         this.gameScreen = gameScreen;
-        background = new Texture("backgrounds/En/game_over.png");
+        if (Boot.eng){
+            background = new Texture("backgrounds/En/game_over.png");
+        }
+        else {
+            background = new Texture("backgrounds/Ru/game_overRu.png");
+        }
         camera = new OrthographicCamera();
         camera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
         batch = new SpriteBatch();

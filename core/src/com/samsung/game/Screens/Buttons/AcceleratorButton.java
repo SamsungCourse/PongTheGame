@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.samsung.game.Boot;
 import com.samsung.game.GameObjects.Paddles.PlayerPaddle;
-import com.samsung.game.Screens.GameScreen;
 
 import static com.samsung.game.HelperClasses.AdaptiveMaker.adaptiveHeight;
 import static com.samsung.game.HelperClasses.AdaptiveMaker.adaptiveWidth;
@@ -19,8 +18,14 @@ public class AcceleratorButton extends AbstractButtonBox {
         height = (int) adaptiveHeight(250);
         this.x = x - width / 2f;
         this.y = y - height / 2f;
-        textureUntouched = new Texture("buttons/settings/En/accelerometerOff.png");
-        textureTouched = new Texture("buttons/settings/En/accelerometerOn.png");
+        if (Boot.eng){
+            textureUp = new Texture("buttons/settings/En/accelerometerOff.png");
+            textureDown = new Texture("buttons/settings/En/accelerometerOn.png");
+        }
+        else {
+            textureUp = new Texture("buttons/settings/Ru/accelerometerOffRu.png");
+            textureDown = new Texture("buttons/settings/Ru/accelerometerOnRu.png");
+        }
     }
     public void update() throws InterruptedException {
         if (isButtonTouched() && !isTouched){
@@ -35,11 +40,11 @@ public class AcceleratorButton extends AbstractButtonBox {
         }
     }
     public void render(SpriteBatch batch) {
-        if (isTouched){
-            batch.draw(textureTouched, x, y, width, height);
+        if (isTouched) {
+            batch.draw(textureDown, x, y, width, height);
         }
-        if (!isTouched){
-            batch.draw(textureUntouched, x, y, width, height);
+        if (!isTouched) {
+            batch.draw(textureUp, x, y, width, height);
         }
     }
 }

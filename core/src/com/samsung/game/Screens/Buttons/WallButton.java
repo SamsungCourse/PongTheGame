@@ -19,8 +19,14 @@ public class WallButton extends AbstractButton {
         width = (int) adaptiveWidth(1100);
         this.x = x - width/2f;
         this.y = y - height/2f;
-        textureUp = new Texture("buttons/setup/En/wallButtonU.png");
-        textureDown = new Texture("buttons/setup/En/wallButtonD.png");
+        if (Boot.eng){
+            textureUp = new Texture("buttons/setup/En/wallButtonU.png");
+            textureDown = new Texture("buttons/setup/En/wallButtonD.png");
+        }
+        else{
+            textureUp = new Texture("buttons/setup/Ru/wallButtonRuU.png");
+            textureDown = new Texture("buttons/setup/Ru/wallButtonRuD.png");
+        }
     }
     public void update(){
         if (isButtonTouched()){

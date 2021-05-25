@@ -15,8 +15,14 @@ public class PaddleChangeButton extends AbstractButton {
         width = (int) adaptiveWidth(525);
         this.x = x - width/2f;
         this.y = y - height/2f;
-        textureUp = new Texture("buttons/setup/En/paddleButtonU.png");
-        textureDown = new Texture("buttons/setup/En/paddleButtonD.png");
+        if (Boot.eng){
+            textureUp = new Texture("buttons/setup/En/paddleButtonU.png");
+            textureDown = new Texture("buttons/setup/En/paddleButtonD.png");
+        }
+        else {
+            textureUp = new Texture("buttons/setup/Ru/paddleButtonRuU.png");
+            textureDown = new Texture("buttons/setup/Ru/paddleButtonRuD.png");
+        }
     }
 
     public void update(){

@@ -19,8 +19,14 @@ public class ButtonNormal extends AbstractButton {
     public ButtonNormal(float x, float y, Boot boot) {
         super(x, y, boot);
         gameScreen = new GameScreen(boot);
-        textureUp = new Texture("buttons/difficulty/En/normalBtn.png");
-        textureDown = new Texture("buttons/difficulty/En/normalBtnD.png");
+        if (Boot.eng){
+            textureUp = new Texture("buttons/difficulty/En/normalBtn.png");
+            textureDown = new Texture("buttons/difficulty/En/normalBtnD.png");
+        }
+        else {
+            textureUp = new Texture("buttons/difficulty/Ru/normalBtnRu.png");
+            textureDown = new Texture("buttons/difficulty/Ru/normalBtnRuD.png");
+        }
     }
 
     public void update(){

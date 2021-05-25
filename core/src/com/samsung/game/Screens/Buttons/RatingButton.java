@@ -15,8 +15,14 @@ public class RatingButton extends AbstractButton {
         width = (int) adaptiveWidth(525);
         this.x = x - width/2f;
         this.y = y - height/2f;
-        textureUp = new Texture("buttons/setup/En/ratingButtonU.png");
-        textureDown = new Texture("buttons/setup/En/ratingButtonD.png");
+        if (Boot.eng){
+            textureUp = new Texture("buttons/setup/En/ratingButtonU.png");
+            textureDown = new Texture("buttons/setup/En/ratingButtonD.png");
+        }
+        else {
+            textureUp = new Texture("buttons/setup/Ru/ratingButtonRuU.png");
+            textureDown = new Texture("buttons/setup/Ru/ratingButtonRuD.png");
+        }
     }
 
     public void update(){
@@ -31,7 +37,7 @@ public class RatingButton extends AbstractButton {
         }
         else {
             if (toSetScreen){
-                //здесь мы както должны сменить экран на GameRating
+                boot.setScreen(new GameRating(boot));
             }
         }
     }

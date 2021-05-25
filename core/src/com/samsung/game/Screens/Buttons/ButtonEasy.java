@@ -19,8 +19,14 @@ public class ButtonEasy extends AbstractButton {
 
     public ButtonEasy(float x, float y, Boot boot) {
         super(x, y, boot);
-        textureDown = new Texture("buttons/difficulty/En/easyBtnD.png");
-        textureUp = new Texture("buttons/difficulty/En/easyBtn.png");
+        if (Boot.eng){
+            textureDown = new Texture("buttons/difficulty/En/easyBtnD.png");
+            textureUp = new Texture("buttons/difficulty/En/easyBtn.png");
+        }
+        else {
+            textureUp = new Texture("buttons/difficulty/Ru/easyBtnRu.png");
+            textureDown = new Texture("buttons/difficulty/Ru/easyBtnRuD.png");
+        }
     }
 
     public void update(){

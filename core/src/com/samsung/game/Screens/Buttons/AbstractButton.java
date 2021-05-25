@@ -30,10 +30,10 @@ public abstract class AbstractButton {
     }
 
     public void render(SpriteBatch batch) {
-        if (isButtonTouched()){
+        if (isButtonTouched()) {
             batch.draw(textureDown, x, y, width, height);
         }
-        if (!isButtonTouched()){
+        if (!isButtonTouched()) {
             batch.draw(textureUp, x, y, width, height);
         }
     }

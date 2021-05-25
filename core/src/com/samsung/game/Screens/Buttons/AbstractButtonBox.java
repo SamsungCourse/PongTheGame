@@ -10,8 +10,8 @@ import static com.samsung.game.HelperClasses.AdaptiveMaker.adaptiveWidth;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_HEIGHT;
 
 public class AbstractButtonBox {
-    protected Texture textureUntouched;
-    protected Texture textureTouched;
+    protected Texture textureUp;
+    protected Texture textureDown;
     protected float x, y;
     protected int width, height;
 

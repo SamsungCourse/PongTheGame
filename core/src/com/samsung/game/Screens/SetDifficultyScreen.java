@@ -40,7 +40,12 @@ public class SetDifficultyScreen extends ScreenAdapter {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, SCREEN_WIDTH, SCREEN_HEIGHT);
         camera.position.set(new Vector3(SCREEN_WIDTH/2f, SCREEN_HEIGHT/2f, 0));
-        background = new Texture("backgrounds/En/difficultyBg.png");
+        if (Boot.eng){
+            background = new Texture("backgrounds/En/difficultyBg.png");
+        }
+        else {
+            background = new Texture("backgrounds/Ru/difficultyBgRu.png");
+        }
         batch = new SpriteBatch();
         world = new World(new Vector2(0,0), false);
         buttonEasy = new ButtonEasy(SCREEN_WIDTH/2f, DIFFICULTY_BUTTON_Y, boot);
@@ -57,7 +62,6 @@ public class SetDifficultyScreen extends ScreenAdapter {
         buttonNormal.update();
         buttonHard.update();
         exitButton.update();
-
         batch.setProjectionMatrix(camera.combined);
     }
 

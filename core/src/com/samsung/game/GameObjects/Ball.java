@@ -106,11 +106,6 @@ public class Ball {//класс пули
                 angle = getRandomAngle(new int[]{180, 157, 135, -157, -135});
             }
         }
-
-        if (body.getLinearVelocity().y == 0 || body.getLinearVelocity().x == 0){
-            reset();
-            angle = getRandomAngle(new int[]{0, 45, -45, 135, -135});
-        }
     }
 
     public void reset(){
