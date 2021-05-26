@@ -10,12 +10,16 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.samsung.game.Boot;
 import com.samsung.game.Screens.Buttons.ExitButton;
 
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+
 import static com.samsung.game.HelperClasses.AdaptiveMaker.adaptiveHeight;
 import static com.samsung.game.HelperClasses.AdaptiveMaker.adaptiveWidth;
-import static com.samsung.game.HelperClasses.Constants.NUMBERS_HEIGHT;
 import static com.samsung.game.HelperClasses.Constants.NUMBERS_WIDTH;
-import static com.samsung.game.HelperClasses.Constants.NUMBER_SPACE;
-import static com.samsung.game.HelperClasses.Constants.SCORE_SPACE;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_HEIGHT;
 import static com.samsung.game.HelperClasses.Constants.SCREEN_WIDTH;
 
@@ -27,6 +31,8 @@ public class GameRating extends ScreenAdapter {
     private ExitButton exitButton;
     private TextureRegion[] numbers;
     private int[] score;
+    private String get;
+    private String[] req;
 
     private World world;
 
@@ -38,7 +44,31 @@ public class GameRating extends ScreenAdapter {
         world = new World(new Vector2(0,0), false);
         exitButton = new ExitButton(SCREEN_WIDTH/2f, SCREEN_HEIGHT - adaptiveHeight(100), boot);
         numbers = loadTextureSprite("numbers.png", 10);
-        score = new int[]{0, 0, 0, 0, 0, 0};
+        score = new int[]{GameOverScreen.score, 21, 15, 6, 3, 0};
+
+        String url = "https://pong-the-game.herokuapp.com/rating/get-top";
+
+        try{
+            URL obj = new URL(url);
+            HttpURLConnection connection = (HttpURLConnection) obj.openConnection();
+
+            connection.setRequestMethod("GET");
+
+            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+
+            get = response.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        req = get.split("\"");
+        for (int i = 0; i < req.length; i++) {
+        }
     }
     public void update() throws InterruptedException {
         world.step(1 / 60f, 6,2);

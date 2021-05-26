@@ -29,7 +29,7 @@ public class GameOverScreen extends ScreenAdapter {
     private OrthographicCamera camera;
     private SpriteBatch batch;
     private ExitButton exitButton;
-    private int score;
+    public static int score;
     private short mlt = 1;
 
     private World world;
@@ -58,7 +58,7 @@ public class GameOverScreen extends ScreenAdapter {
         if (GameScreen.gameDifficulty == GameDifficulty.NORMAL) mlt = 2;
         if (GameScreen.gameDifficulty == GameDifficulty.HARD) mlt = 3;
 
-        score = Math.max(gameScreen.getPlayer().getScore() - gameScreen.getEnemy().getScore(), 0) * mlt;
+        score = Math.max(gameScreen.getPlayer().getScore(), 0) * mlt;
     }
 
     private TextureRegion[] loadTextureSprite(String filename, int columns){

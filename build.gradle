@@ -10,8 +10,6 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.4'
-        
-
     }
 }
 
@@ -20,7 +18,7 @@ allprojects {
 
     version = '1.0'
     ext {
-        appName = "Pong-TheGame"
+        appName = "PongGame"
         gdxVersion = '1.10.0'
         roboVMVersion = '2.3.12'
         box2DLightsVersion = '1.5'
@@ -56,7 +54,6 @@ project(":android") {
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-arm64-v8a"
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86"
         natives "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-x86_64"
-        
     }
 }
 
